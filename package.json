@@ -1,0 +1,16 @@
+{
+  "name": "fruitables",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "E-commerce websitr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.2.4",
+    "uuid": "^9.0.1"
+  }
+}
