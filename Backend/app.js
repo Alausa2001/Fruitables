@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import userRouter from "./routes/user.routes.js";
-
+import fruitRouter from "./routes/fruit.routes.js";
 
 const app = express();
 const port = 3000;
@@ -9,7 +9,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use('/api/v1', userRouter)
-
+app.use('/api/v1/fruits', fruitRouter)
 
 
 app.get('/api/v1', (req, res) => {
