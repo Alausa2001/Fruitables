@@ -4,7 +4,7 @@ import mongoose from "./db_conn.js"
 
 const userSchema = new Schema({
     surname: String,
-    firstName: String,
+    firstname: String,
     email: {
         type: String,
         unique: true,
