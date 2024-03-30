@@ -1,6 +1,5 @@
 import { Schema } from 'mongoose';
-import uuidv4 from "uuid/v4"
-import mongoose from "./db_conn"
+import mongoose from "./db_conn.js"
 
 
 const fruitSchema = new Schema({

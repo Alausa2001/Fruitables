@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
-import { Fruit } from './fruits';
-import mongoose from "./db_conn";
-import { User } from './user';
+import { Fruit } from './fruits.js';
+import mongoose from "./db_conn.js";
+import User from './user.js';
 
 
 const cartSchema = new Schema({
@@ -20,4 +20,4 @@ const cartItemSchema = new Schema({
 
 const CartItem = mongoose.model("CartItem", cartItemSchema)
 
-export { Cart, CartItem};
+export { Cart, CartItem };
