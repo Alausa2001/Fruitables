@@ -130,13 +130,15 @@ fruitRouter.post("/:id/review", logger, async(req, res) => {
 
 
 
-fruitRouter.get("/:name/reviews", logger, async(req, res) => {
-    const reviews = await Reviews.find({ name: req.params.name});
+fruitRouter.get("/:id/reviews", logger, async(req, res) => {
+    const fruit = await Fruit.findById(req.params.id);
+    const reviews = await Review.find({ fruit: req.params.id })
     if (!reviews) {
         return res.status(404).json({ status: "ok", msg: "No reviews yet"})
     }
-    
+    res.status(200).json({ status: "ok", msg: ".", reviews })
 });
+
 
 
 export default fruitRouter;

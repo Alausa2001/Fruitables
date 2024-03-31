@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
 import User from "../models/user.js"
+import { Cart, CartItem } from "../models/cart.js";
 import logger from "../middlewares/logger.js"
 
 const userRouter = express.Router();
@@ -10,7 +11,7 @@ userRouter.post("/register", logger, async (req, res) => {
     let { surname, firstname, email, password, phoneNo } = req.body;
 
     try {
-        const userExist = await User.find({ email });
+        const userExist = await User.findOne({ email });
         if (userExist) {
             return res.status(400).json({ status: "error", msg: "This email has been used"})
         }
@@ -33,7 +34,12 @@ userRouter.post("/register", logger, async (req, res) => {
         const newUser = new User({ surname, firstname, email, password, phoneNo });
         await newUser.save();
         delete newUser.password;
-        return res.status(201).json({ status: "ok", msg: "Registration successful", newUser })
+
+        // Create cart for user
+        const cart = new Cart({ user: newUser._id })
+        await cart.save()
+
+        return res.status(201).json({ status: "ok", msg: "Registration successful", newUser, cart })
     } catch(err) {
         console.log(err);
         // error logger to be put here
@@ -70,7 +76,7 @@ userRouter.post('/login', logger, async (req, res) => {
 
          // generates jwt
          // Normally (in production) secret keys should be save in the environment variables
-         const token = jsonwebtoken.sign({ email: user.email }, "secretKey", { expiresIn: '32h' });
+         const token = jsonwebtoken.sign({ id: user._id }, "secretKey", { expiresIn: '32h' });
          res.setHeader('Access-Control-Expose-Headers', 'Authorization');
          res.status(200).header('Authorization', `Bearer ${token}`).json({ status: 'ok', user });
     } catch (err) {
@@ -80,4 +86,8 @@ userRouter.post('/login', logger, async (req, res) => {
     }
 });
 
+
+
+// Routes for a user's cart items
+userRouter.post("/")
 export default userRouter;
