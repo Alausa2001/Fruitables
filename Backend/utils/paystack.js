@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from "axios";
 
 
 
@@ -53,4 +53,5 @@ const Paystack = () => {
     return {  InitializePayment, VerifyPayment };
 }
 
-module.exports = Paystack
+
+export default Paystack;
