@@ -15,6 +15,7 @@ const checkoutSchema = new Schema({
     mobile: String,
     email: String,
     status: String,
+    total: Number,
 });
 
 const Checkout = mongoose.model("Checkout", checkoutSchema);

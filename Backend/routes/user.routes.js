@@ -4,8 +4,13 @@ import jsonwebtoken from "jsonwebtoken";
 import User from "../models/user.js"
 import { Fruit } from "../models/fruits.js";
 import { Cart, CartItem } from "../models/cart.js";
+import Checkout from "../models/checkout.js";
 import logger from "../middlewares/logger.js"
+import Paystack from "../utils/paystack.js";
 
+
+
+const { InitializePayment, VerifyPayment } = Paystack();
 const userRouter = express.Router();
 
 userRouter.post("/register", logger, async (req, res) => {
@@ -125,7 +130,7 @@ userRouter.get("/cart_items/:id", logger, async(req, res) => {
     const cart_items = [];
 
     try {
-        const items = await CartItem.find({ cart: req.params.id });
+        const items = await CartItem.find({ cart: req.params.id, status: "not paid" });
         if (items) {
             for (let idx = 0; idx < items.length; idx++) {
                 let item = {};
@@ -167,4 +172,47 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
         return res.status(500).json({ status: "error", msg: "internal server error"});
     }
 })
+
+
+
+
+
+// Checkout Routes
+userRouter.post("/checkout/:cartId", logger, async(req, res) => {
+    const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total} = req.body;
+    try {
+        const newCheckout = new Checkout({
+            firstname, lastname, address, city,
+            postalCode, mobile, email, status, user: userId, cart: req.params.cartId, total
+        });
+
+        const payment = await InitializePayment({ email, amount: parseInt(total) * 100 });
+        await newCheckout.save();
+
+        await CartItem.updateMany({ cart: req.params.cartId}, { status: "paid" })
+        return res.status(200).json({ status: "ok", ...payment.data });
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ status: "error", msg: "internal server error"});
+    }
+});
+
+
+userRouter.get("/:id/transaction_history", logger, async(req, res) => {
+    try {
+        const paid = await CartItem.find({ cart: req.params.id, status: "paid" });
+        res.status(200).json({ status: "ok", paid })
+       } catch(err) {
+        console.log(err);
+        return res.status(500).json({ status: "error", msg: "internal server error"});
+    }
+});
+
+
+
+
+
+
+
 export default userRouter;
