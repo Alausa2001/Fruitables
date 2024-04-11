@@ -75,7 +75,7 @@ userRouter.post('/login', logger, async (req, res) => {
 
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            return res.status(400).json({ status: 'error', message: 'incorrect password' });
+            return res.status(400).json({ status: 'error', msg: 'incorrect password' });
         }
 
         // Retrieve user's cart
@@ -181,6 +181,10 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
 userRouter.post("/checkout/:cartId", logger, async(req, res) => {
     const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total} = req.body;
     try {
+        const cart = await CartItem.findOne({ status: "not paid"});
+        if (!cart) {
+            return res.status(500).json({ status: "error", msg: ""});
+        }
         const newCheckout = new Checkout({
             firstname, lastname, address, city,
             postalCode, mobile, email, status, user: userId, cart: req.params.cartId, total
