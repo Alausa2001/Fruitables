@@ -5,7 +5,7 @@ const Header = () => {
     <div>
       <div
         id="spinner"
-        className="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center"
+        className="hidden w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center"
       >
         <div className="spinner-grow text-primary" role="status"></div>
       </div>
@@ -36,7 +36,7 @@ const Header = () => {
         </div>
         <div className="container px-0">
           <nav className="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="index.html" className="navbar-brand">
+            <a href="/" className="navbar-brand">
               <img
                 src="/assets/logo.png"
                 alt="logo"
@@ -80,7 +80,7 @@ const Header = () => {
                 >
                   <i className="fas fa-search text-primary"></i>
                 </button>
-                <a href="cart.html" className="position-relative me-4 my-auto">
+                <a href="/cart" className="position-relative me-4 my-auto">
                   <i className="fa fa-shopping-bag fa-2x"></i>
                   <span
                     className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"

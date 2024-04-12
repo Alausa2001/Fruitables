@@ -70,7 +70,7 @@ function Footer() {
                 minerals, and plant chemicals.
               </p>
               <a
-                href="about.html"
+                href="/about"
                 className="btn border-secondary py-2 px-4 rounded-pill text-primary"
               >
                 Read More
@@ -80,10 +80,10 @@ function Footer() {
           <div className="col-lg-3 col-md-6">
             <div className="d-flex flex-column text-start footer-item">
               <h4 className="text-light mb-3">Shop Info</h4>
-              <a className="btn-link" href="about.html">
+              <a className="btn-link" href="/about">
                 About Us
               </a>
-              <a className="btn-link" href="contact.html">
+              <a className="btn-link" href="/contact">
                 Contact Us
               </a>
             </div>
