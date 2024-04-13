@@ -1,11 +1,13 @@
 // Header
 
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div>
       <div
         id="spinner"
-        className="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center"
+        className="hidden w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center"
       >
         <div className="spinner-grow text-primary" role="status"></div>
       </div>
@@ -16,33 +18,33 @@ const Header = () => {
             <div className="top-info ps-2">
               <small className="me-3">
                 <i className="fas fa-map-marker-alt me-2 text-secondary"></i>{" "}
-                <a href="/" className="text-white">
+                <Link to="/" className="text-white">
                   123 Street, UK
-                </a>
+                </Link>
               </small>
               <small className="me-3">
                 <i className="fas fa-envelope me-2 text-secondary"></i>
-                <a href="/" className="text-white">
+                <Link to="/" className="text-white">
                   Email@Example.com
-                </a>
+                </Link>
               </small>
             </div>
             <div className="top-link pe-2">
-              <a href="/" className="text-white">
+              <Link to="/" className="text-white">
                 <small className="text-white ms-2">Sales and Refunds</small>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="container px-0">
           <nav className="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="index.html" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               <img
                 src="/assets/logo.png"
                 alt="logo"
                 style={{ width: "130px", height: "90px" }}
               />
-            </a>
+            </Link>
             <button
               className="navbar-toggler py-2 px-3"
               type="button"
@@ -57,19 +59,19 @@ const Header = () => {
               id="navbarCollapse"
             >
               <div className="navbar-nav mx-auto">
-                <a href="/" className="nav-item nav-link active">
+                <Link to="/" className="nav-item nav-link active">
                   Home
-                </a>
-                <a href="/about" className="nav-item nav-link">
+                </Link>
+                <Link to="/about" className="nav-item nav-link">
                   About
-                </a>
-                <a href="/shop" className="nav-item nav-link">
+                </Link>
+                <Link to="/shop" className="nav-item nav-link">
                   Shop
-                </a>
+                </Link>
 
-                <a href="/contact" className="nav-item nav-link">
+                <Link to="/contact" className="nav-item nav-link">
                   Contact
-                </a>
+                </Link>
               </div>
               <div className="d-flex m-3 me-0">
                 <button
@@ -80,7 +82,7 @@ const Header = () => {
                 >
                   <i className="fas fa-search text-primary"></i>
                 </button>
-                <a href="cart.html" className="position-relative me-4 my-auto">
+                <Link to="/cart" className="position-relative me-4 my-auto">
                   <i className="fa fa-shopping-bag fa-2x"></i>
                   <span
                     className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
@@ -93,10 +95,10 @@ const Header = () => {
                   >
                     3
                   </span>
-                </a>
-                <a href="/login" className="my-auto" title="icon">
+                </Link>
+                <Link to="/login" className="my-auto" title="icon">
                   <i className="fas fa-user fa-2x"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </nav>

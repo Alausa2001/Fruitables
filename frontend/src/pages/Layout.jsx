@@ -1,7 +1,7 @@
 // Layout - Overall page layout
 
 import { Header, Footer, Copyright, BackToTop } from "../components";
-const { Outlet } = require("react-router-dom");
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (

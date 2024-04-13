@@ -1,4 +1,43 @@
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs((fields) => ({ ...fields, [name]: value }));
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const data = {
+      password: inputs.password,
+      email: inputs.email,
+    };
+
+    await axios
+      .post("https://fruitables-7yyj.onrender.com/api/v1/signin", data)
+      .then((res) => {
+        if (res.status === "success") {
+          console.log(res);
+          alert(res.message);
+          navigate("/home");
+          return;
+        }
+        console.log(res);
+        alert(res.message);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/login");
+      });
+  };
+
   return (
     <>
       <div className="container-fluid page-header py-5">
@@ -21,16 +60,21 @@ const Login = () => {
             </div>
 
             <div className="col-lg-7">
-              <form action="" className="">
+              <form action="" className="" onSubmit={handleLogin}>
                 <input
                   type="email"
                   className="w-100 form-control border-0 py-3 mb-4"
                   placeholder="Enter Your Email"
+                  name="email"
+                  value={inputs.email || ""}
+                  onChange={handleChange}
                 />
                 <input
                   type="password"
                   className="w-100 form-control border-0 py-3 mb-4"
                   placeholder="Enter Your password"
+                  name="password"
+                  onChange={handleChange}
                 />
                 <button
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
@@ -41,7 +85,7 @@ const Login = () => {
               </form>
               <a href="/forgot-password">Forget Password</a>
             </div>
-            <a href="/register">Don't have account? Register</a>
+            <Link to="/register">Don't have account? Register</Link>
 
             <div className="col-lg-5"></div>
           </div>

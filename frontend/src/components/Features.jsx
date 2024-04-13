@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 function Features() {
   return (
     <div className="container-fluid service py-5">
       <div className="container py-5">
         <div className="row g-4 justify-content-center">
           <div className="col-md-6 col-lg-4">
-            <a href="/">
+            <Link to="/">
               <div className="service-item bg-secondary rounded border border-secondary">
                 <img
                   src="/assets/featur-1.jpg"
@@ -18,10 +20,10 @@ function Features() {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="col-md-6 col-lg-4">
-            <a href="/">
+            <Link to="/">
               <div className="service-item bg-dark rounded border border-dark">
                 <img
                   src="/assets/featur-2.jpg"
@@ -35,10 +37,10 @@ function Features() {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="col-md-6 col-lg-4">
-            <a href="/">
+            <Link to="/">
               <div className="service-item bg-primary rounded border border-primary">
                 <img
                   src="/assets/featur-3.jpg"
@@ -52,7 +54,7 @@ function Features() {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
