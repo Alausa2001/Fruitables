@@ -156,7 +156,7 @@ userRouter.get("/cart_items/:id", logger, async(req, res) => {
 
 
 
-router.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res) => {
+userRouter.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res) => {
     try {
         const cart = await Cart.findOne({ _id: req.params.cartId });
         if (!cart) {
@@ -185,7 +185,7 @@ router.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res) =>
 });
 
 
-router.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res) => {
+userRouter.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res) => {
     try {
         const cart = await Cart.findOne({ _id: req.params.cartId });
         if (!cart) {
