@@ -33,7 +33,7 @@ fruitRouter.post('/add_new', logger, async (req, res) => {
 fruitRouter.get('/all', logger, async (req, res) => {
     const fruits = await Fruit.find()
     if (!fruits) {
-        res.status(404).json({ status: "error", msg: "No fruits available"})
+        return res.status(404).json({ status: "error", msg: "No fruits available"})
     }
     const fruitOnly = [];
     const vegetables = [];
@@ -53,11 +53,19 @@ fruitRouter.get('/all', logger, async (req, res) => {
 fruitRouter.get('/:category/all', logger, async (req, res) => {
     const fruits = await Fruit.find({ category: req.params.category });
     if (!fruits[0]) {
-        res.status(404).json({ status: "error", msg: `No ${req.params.category} fruits available`})
+        return res.status(404).json({ status: "error", msg: `No ${req.params.category} fruits available`})
     }
     return res.status(200).json({ status: "ok", fruits });
 })
 
+
+fruitRouter.get("/fruit/:id", logger, async(req, res) =>{
+    const fruit = await Fruit.findOne({ _id: req.params.id });
+    if (!fruit) {
+        return res.status(404).json({ status: "error", msg: `fruit not available`})   
+    }
+    return res.status(200).json({ status:"ok", fruit })
+});
 
 
 fruitRouter.put("/:id/update", logger, async(req, res) => {

@@ -155,6 +155,66 @@ userRouter.get("/cart_items/:id", logger, async(req, res) => {
 
 
 
+
+router.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res) => {
+    try {
+        const cart = await Cart.findOne({ _id: req.params.cartId });
+        if (!cart) {
+            return res.status(404).json({ status: "ok", messsage: "cart not found, incorrect id" });
+        }
+
+        const item = await CartItem.findOne({  cart: cart._id, _id: req.params.cartItemId });
+        if (!item) {
+            return res.status(404).json({ status: "ok", messsage: "Item not found, incorrect id" })
+        }
+
+        const fruit = await Fruit.findOne({ _id: item.fruit });
+
+        if ( fruit  && (!(fruit.quantityAvailable))) {
+            return res.status(404).json({
+                status: "ok", msg: `${fruit.name} is out of stock`})
+        }
+        const updatedCart = await CartItem.findByIdAndUpdate(req.params.cartItemId, { quantity: item.quantity + 1 });
+
+        const updateQuantity = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable - 1 })
+        return res.status(200).json({ status: "ok"})
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({ status: "ok", message: "Error occurred"}); 
+    }
+});
+
+
+router.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res) => {
+    try {
+        const cart = await Cart.findOne({ _id: req.params.cartId });
+        if (!cart) {
+            return res.status(404).json({ status: "ok", messsage: "cart not found, incorrect id" });
+        }
+
+        const item = await CartItem.findOne({  cart: cart._id, _id: req.params.cartItemId });
+        if (!item) {
+            return res.status(404).json({ status: "ok", messsage: "Item not found, incorrect id" })
+        }
+
+        const fruit = await Fruit.findOne({ _id: item.fruit });
+
+        if ( fruit  && (!(fruit.quantityAvailable))) {
+            return res.status(404).json({
+                status: "ok", msg: `${fruit.name} is out of stock`})
+        }
+        const updatedCart = await CartItem.findByIdAndUpdate(req.params.cartItemId, { quantity: item.quantity - 1 });
+
+        const updateQuantity = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable + 1 })
+        return res.status(200).json({ status: "ok"})
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({ status: "ok", message: "Error occurred"}); 
+    }
+});
+
+
+
 userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
     try {
         let fruit
