@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const style = {
   top: "10px",
   left: "10px",
@@ -15,37 +17,37 @@ function FruitShops() {
             <div className="col-lg-8 text-end">
               <ul className="nav nav-pills d-inline-flex text-center mb-5">
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="d-flex m-2 py-2 bg-light rounded-pill active"
                     data-bs-toggle="pill"
-                    href="/tab-1"
+                    to="/#tab-1"
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
                       All Products
                     </span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="d-flex py-2 m-2 bg-light rounded-pill"
                     data-bs-toggle="pill"
-                    href="/tab-2"
+                    to="/#tab-2"
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
                       Vegetables
                     </span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="d-flex m-2 py-2 bg-light rounded-pill"
                     data-bs-toggle="pill"
-                    href="/tab-3"
+                    to="/#tab-3"
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
                       Fruits
                     </span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -80,13 +82,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              to="//shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -116,13 +118,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-details2.html"
+                            <Link
+                              to="/shop-details2"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -152,13 +154,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-details3.html"
+                            <Link
+                              to="/shop-details3"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -185,13 +187,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              to="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -221,13 +223,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              to="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -257,13 +259,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -290,13 +292,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -326,13 +328,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -363,13 +365,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -407,13 +409,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -443,13 +445,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -479,13 +481,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -515,13 +517,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -551,13 +553,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -587,13 +589,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -623,13 +625,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -659,13 +661,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -695,13 +697,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -731,13 +733,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -767,13 +769,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -803,13 +805,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -847,13 +849,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -883,13 +885,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -919,13 +921,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -955,13 +957,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £2.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -991,13 +993,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               $4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -1027,13 +1029,13 @@ function FruitShops() {
                             <p className="text-dark fs-5 fw-bold mb-0">
                               £4.99 / kg
                             </p>
-                            <a
-                              href="shop-detail.html"
+                            <Link
+                              href="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}
                               View Detail
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

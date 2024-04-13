@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <>
@@ -33,23 +35,23 @@ const Hero = () => {
                 <div className="carousel-inner" role="listbox">
                   <div className="carousel-item active rounded">
                     <img
-                      src="img/hero-img-1.png"
+                      src="/assets/hero-img-1.png"
                       className="img-fluid w-100 h-100 bg-secondary rounded"
                       alt="First slide"
                     />
-                    <a href="/" className="btn px-4 py-2 text-white rounded">
+                    <Link to="/" className="btn px-4 py-2 text-white rounded">
                       Simple Fruits
-                    </a>
+                    </Link>
                   </div>
                   <div className="carousel-item rounded">
                     <img
-                      src="img/hero-img-2.jpg"
+                      src="/assets/hero-img-2.jpg"
                       className="img-fluid w-100 h-100 rounded"
                       alt="Second slide"
                     />
-                    <a href="/" className="btn px-4 py-2 text-white rounded">
+                    <Link to="/" className="btn px-4 py-2 text-white rounded">
                       Healthy Vegetables
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <button

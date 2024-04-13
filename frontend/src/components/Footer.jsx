@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <div className="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
@@ -8,10 +10,10 @@ function Footer() {
         >
           <div className="row g-4">
             <div className="col-lg-3">
-              <a href="/">
+              <Link to="/">
                 <h1 className="text-primary mb-0">Fruitables</h1>
                 <p className="text-secondary mb-0">Fresh products</p>
-              </a>
+              </Link>
             </div>
             <div className="col-lg-6">
               <div className="position-relative mx-auto">
@@ -31,30 +33,30 @@ function Footer() {
             </div>
             <div className="col-lg-3">
               <div className="d-flex justify-content-end pt-3">
-                <a
+                <Link
                   className="btn  btn-outline-secondary me-2 btn-md-square rounded-circle"
-                  href="/"
+                  to="/"
                 >
                   <i className="fab fa-twitter"></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
-                  href="/"
+                  to="/"
                 >
                   <i className="fab fa-facebook-f"></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
-                  href="/"
+                  to="/"
                 >
                   <i className="fab fa-youtube"></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="btn btn-outline-secondary btn-md-square rounded-circle"
-                  href="/"
+                  to="/"
                 >
                   <i className="fab fa-linkedin-in"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -69,23 +71,23 @@ function Footer() {
                 demand for our products. NFV contains important vitamins,
                 minerals, and plant chemicals.
               </p>
-              <a
-                href="/about"
+              <Link
+                to="/about"
                 className="btn border-secondary py-2 px-4 rounded-pill text-primary"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-3 col-md-6">
             <div className="d-flex flex-column text-start footer-item">
               <h4 className="text-light mb-3">Shop Info</h4>
-              <a className="btn-link" href="/about">
+              <Link className="btn-link" to="/about">
                 About Us
-              </a>
-              <a className="btn-link" href="/contact">
+              </Link>
+              <Link className="btn-link" to="/contact">
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-3 col-md-6">
