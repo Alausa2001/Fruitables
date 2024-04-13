@@ -99,7 +99,7 @@ userRouter.post('/login', logger, async (req, res) => {
 
 // Routes for a user's cart items
 userRouter.post("/add_to_cart", logger, async(req, res) => {
-    const { userId, fruitId, quantity } = req.body;
+    const { userId, fruitId, quantity = 1 } = req.body;
     
     try {
         const cart = await Cart.findOne({ user: userId });
@@ -238,23 +238,27 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
 
 
 // Checkout Routes
-userRouter.post("/checkout/:cartId", logger, async(req, res) => {
+userRouter.post("/checkout/:userId", logger, async(req, res) => {
     const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total} = req.body;
     try {
-        const cart = await CartItem.findOne({ status: "not paid"});
+        let cart = await CartItem.findOne({ status: "not paid"});
         if (!cart) {
-            return res.status(500).json({ status: "error", msg: ""});
+            return res.status(404).json({ status: "error", msg: "no Item on cart"});
         }
         const newCheckout = new Checkout({
             firstname, lastname, address, city,
             postalCode, mobile, email, status, user: userId, cart: req.params.cartId, total
         });
 
+        cart = await Cart.findOne({ user: req.params.userId })
         const payment = await InitializePayment({ email, amount: parseInt(total) * 100 });
-        await newCheckout.save();
 
-        await CartItem.updateMany({ cart: req.params.cartId}, { status: "paid" })
-        return res.status(200).json({ status: "ok", ...payment.data });
+        if (payment.data.authorization_url) {
+            await newCheckout.save();
+            await CartItem.updateMany({ cart: cart._id}, { status: "paid" })
+            return res.status(200).json({ status: "ok", ...payment.data });
+        }
+        return res.status(500).json({ status: "error", message: "Couldn't generate payment link"});
 
     } catch(err) {
         console.log(err);
