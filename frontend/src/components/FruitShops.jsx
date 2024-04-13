@@ -83,7 +83,7 @@ function FruitShops() {
                               £2.99 / kg
                             </p>
                             <Link
-                              to="//shop-detail"
+                              to="/shop-detail"
                               className="btn border border-secondary rounded-pill px-3 text-primary"
                             >
                               <i className="fa fa-eye me-2 text-primary"></i>{" "}

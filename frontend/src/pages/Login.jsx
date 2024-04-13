@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [inputs, setInputs] = useState({});
@@ -85,7 +85,7 @@ const Login = () => {
               </form>
               <a href="/forgot-password">Forget Password</a>
             </div>
-            <a href="/register">Don't have account? Register</a>
+            <Link to="/register">Don't have account? Register</Link>
 
             <div className="col-lg-5"></div>
           </div>
