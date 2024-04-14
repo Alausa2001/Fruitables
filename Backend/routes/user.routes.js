@@ -225,8 +225,9 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
             fruit = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable + item.quantity });
             // delete item from cart
             item = await CartItem.findByIdAndDelete(req.params.id);
-            res.status(200).json({ status: "ok", message: "item removed from cart" })
+            return res.status(200).json({ status: "ok", message: "item removed from cart" })
         }
+        return res.status(404).json({ status: "ok", message: "item not found incorrect id" })
     } catch(err) {
         console.log(err)
         return res.status(500).json({ status: "error", msg: "internal server error"});
@@ -251,10 +252,12 @@ userRouter.post("/checkout/:userId", logger, async(req, res) => {
         });
 
         cart = await Cart.findOne({ user: req.params.userId })
+
         const payment = await InitializePayment({ email, amount: parseInt(total) * 100 });
 
         if (payment.data.authorization_url) {
             await newCheckout.save();
+            console.log(cart._id)
             await CartItem.updateMany({ cart: cart._id}, { status: "paid" })
             return res.status(200).json({ status: "ok", ...payment.data });
         }

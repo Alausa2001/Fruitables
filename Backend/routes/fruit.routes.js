@@ -9,12 +9,13 @@ const fruitRouter = express.Router();
 // Not a user route
 fruitRouter.post('/add_new', logger, async (req, res) => {
     const {
-        name, description, price, quantityAvailable, category,
-        origin, weight, minWeight, quality, check
+        name, description, price, quantityAvailable, category, imageUrl,
+        origin, weight, minWeight, quality, check = "Healthy"
     } = req.body;
 
     try {
         const fruitAvailable = await Fruit.findOne({ name, category });
+        
         if (fruitAvailable) {
             return res.status(400).json({ status: "error", msg: "Fruit available already, you can only update now" })
         }
@@ -22,7 +23,7 @@ fruitRouter.post('/add_new', logger, async (req, res) => {
         return res.status(500).json({ status: "error", msg: "internal server error"})
     }
 
-    const newFruit = new Fruit({name, description, price, quantityAvailable, category, origin, weight, minWeight, quality, check});
+    const newFruit = new Fruit({name, description, price, quantityAvailable, category, origin, imageUrl, weight, minWeight, quality, check});
     await newFruit.save();
     return res.status(201).json({ status: "ok", msg: "A new fruit has been added to stock", fruit: newFruit});
 });
@@ -59,7 +60,7 @@ fruitRouter.get('/:category/all', logger, async (req, res) => {
 })
 
 
-fruitRouter.get("/fruit/:id", logger, async(req, res) =>{
+fruitRouter.get("/:id", logger, async(req, res) => {
     const fruit = await Fruit.findOne({ _id: req.params.id });
     if (!fruit) {
         return res.status(404).json({ status: "error", msg: `fruit not available`})   
@@ -71,10 +72,10 @@ fruitRouter.get("/fruit/:id", logger, async(req, res) =>{
 fruitRouter.put("/:id/update", logger, async(req, res) => {
     const {
         name, description, price, quantityAvailable, category,
-        origin, weight, minWeight, quality, check
+        origin, weight, minWeight, quality, check, imageUrl
     } = req.body;
     
-    const obj = { name, description, price, quantityAvailable, category, origin, weight, minWeight, quality, check }
+    const obj = { name, description, price, quantityAvailable, imageUrl, category, origin, weight, minWeight, quality, check }
     
     let updatedFruit
     try {
@@ -84,7 +85,7 @@ fruitRouter.put("/:id/update", logger, async(req, res) => {
     }
 
     if (updatedFruit) {
-        return res.status(200).json({ status: "ok", msg: "update successful", fruit: updatedFruit });
+        return res.status(200).json({ status: "ok", msg: "update successful" });
     }
     return res.status(404).json({ status: "error", msg: "fruit not found, invalid id" });
 })
@@ -122,7 +123,7 @@ fruitRouter.post("/:id/review", logger, async(req, res) => {
         }
     } catch(err) {
         // error logger to be put here
-        console.log()
+        console.error(err)
         return res.status(400).json({ status: "error", msg: "unable to process request, check id" });
     }
 
