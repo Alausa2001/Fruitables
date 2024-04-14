@@ -13,7 +13,7 @@ import Paystack from "../utils/paystack.js";
 const { InitializePayment, VerifyPayment } = Paystack();
 const userRouter = express.Router();
 
-userRouter.post("/register", logger, async (req, res) => {
+userRouter.post("/signup", logger, async (req, res) => {
     let { surname, firstname, email, password, phoneNo } = req.body;
 
     try {
@@ -55,7 +55,7 @@ userRouter.post("/register", logger, async (req, res) => {
 });
 
 
-userRouter.post('/login', logger, async (req, res) => {
+userRouter.post('/signin', logger, async (req, res) => {
     const { password, email } = req.body;
 
     if (!password) {
