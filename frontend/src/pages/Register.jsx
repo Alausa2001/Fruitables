@@ -6,35 +6,40 @@ const Register = () => {
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
     setInputs((fields) => ({ ...fields, [name]: value }));
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const data = {
-      password: inputs.password,
-      email: inputs.email,
-    };
 
     await axios
-      .post("https://fruitables-7yyj.onrender.com/api/v1/signup", data)
+      .post("https://fruitables-7yyj.onrender.com/api/v1/signup", {
+        phoneNo: inputs.phone,
+        password: inputs.password,
+        email: inputs.email,
+        fullname: inputs.email,
+      })
       .then((res) => {
-        if (res.status === "success") {
-          console.log(res);
-          alert(res.message);
+        const { data } = res;
+        if (data.status === "success") {
+          alert(data.message);
           navigate("/login");
           return;
         }
-        console.log(res);
-        alert(res.message);
+        alert(data.message);
         navigate("/register");
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data) {
+          alert(err.response.message);
+        } else {
+          alert("Registration unsuccessful, retry");
+        }
         navigate("/register");
+        console.log(err);
       });
   };
 
@@ -44,7 +49,7 @@ const Register = () => {
         <h1 className="text-center text-white display-6">Welcome Back</h1>
         <ol className="breadcrumb justify-content-center mb-0">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item active text-white">Register</li>
         </ol>
