@@ -21,7 +21,7 @@ const Login = () => {
         password: inputs.password
     }).then(res => {
         const { data, headers } = res;
-        if (data.status === "success") {
+        if (data.status === "ok") {
             if (signin({
                 auth: {
                     token: headers.authorization,
@@ -29,13 +29,13 @@ const Login = () => {
                 },
                 userState: data.user
             })) {
-                alert(`Welcome ${data.user.email} -  ${data.message}`);
+                alert(`Welcome ${data.user.email}`);
                 navigate("/")
             }
         }
     }).catch(err => {
         if (err.response.data) {
-            alert(err.response.data.message);
+            alert(err.response.data.msg);
         } else {
             alert("Login unsuccessful, retry ")
         }
@@ -82,17 +82,14 @@ const Login = () => {
                   name="password"
                   onChange={handleChange}
                 />
-                <button
+                <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-                  type="submit"
-                >
-                  Login
-                </button>
+                  type="submit" value="Login"
+                />
               </form>
               <Link to="/forgot-password">Forget Password</Link>
             </div>
             <Link to="/register">Don't have account? Register</Link>
-
             <div className="col-lg-5"></div>
           </div>
         </div>

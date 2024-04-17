@@ -24,17 +24,17 @@ const Register = () => {
       })
       .then((res) => {
         const { data } = res;
-        if (data.status === "success") {
-          alert(data.message);
+        if (data.status === "ok") {
+          alert(data.msg);
           navigate("/login");
           return;
         }
-        alert(data.message);
+        alert(data.msg);
         navigate("/register");
       })
       .catch((err) => {
-        if (err.response.data) {
-          alert(err.response.message);
+        if (err.response) {
+          alert(err.response.data.msg);
         } else {
           alert("Registration unsuccessful, retry");
         }
@@ -103,12 +103,11 @@ const Register = () => {
                   name="password"
                   onChange={handleChange}
                 />
-                <button
+                <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
                   type="submit"
-                >
-                  Register
-                </button>
+                  value="Register"
+                />
               </form>
               <Link to="/login">already a user? Login</Link>
             </div>
