@@ -10,3 +10,4 @@ export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as ShopDetail } from './ShopDetail';
 export { default as Shop } from './Shop';
+export { default as Checkout } from './Checkout';
