@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     cartItems: [],
-    amount: 0,
+    quantity: 0,
     total: 0,
     isLoading: true,
 }
@@ -17,30 +17,30 @@ const cartSlice = createSlice({
         },
         removeItem: (state, action) => {
             const itemId = action.payload;
-            state.cartItems = state.cartItems.filter((item) => item.id !== itemId)
+            state.cartItems = state.cartItems.filter((item) => item._id !== itemId)
             cartSlice.caseReducers.calculateTotals(state);
         },
-        updateCartAmount: (state, action) => {
-            const cartItem = state.cartItems.find(item => item.id === action.payload.id);
-            cartItem.amount = Number(action.payload.amount);
+        updateCartQuantity: (state, action) => {
+            const cartItem = state.cartItems.find(item => item._id === action.payload.id);
+            cartItem.quantity = Number(action.payload.quantity);
             cartSlice.caseReducers.calculateTotals(state);
         },
         calculateTotals: (state) => {
-            let amount = 0;
+            let quantity = 0;
             let total = 0;
             state.cartItems.forEach(item => {
-                amount += item.amount;
-                total += item.amount * item.price;
+                quantity += item.quantity;
+                total += item.quantity * item.price;
             });
-            state.amount = amount;
+            state.quantity = quantity;
             state.total = total;
         },
         addToCart: (state, action) => {
-            const cartItem = state.cartItems.find(item => item.id === action.payload.id);
+            const cartItem = state.cartItems.find(item => item._id === action.payload._id);
             if(!cartItem){
                 state.cartItems.push(action.payload);
             }else{
-                cartItem.amount += action.payload.amount;
+                cartItem.quantity += action.payload.quantity;
             }
             cartSlice.caseReducers.calculateTotals(state);
 
@@ -49,6 +49,6 @@ const cartSlice = createSlice({
 })
 
 // console.log(cartSlice);
-export const { clearCart, removeItem, updateCartAmount, decrease, calculateTotals, addToCart } = cartSlice.actions;
+export const { clearCart, removeItem, updateCartQuantity, calculateTotals, addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

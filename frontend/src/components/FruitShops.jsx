@@ -1,76 +1,46 @@
 import { Link } from "react-router-dom";
-import { FruitCard } from "./Cards";
-
+import { ProductCard } from "./Cards";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 function FruitShops() {
-  const items = [
-    {
-      img: "/assets/fruite-item-5.jpg",
-      category: "Fruits",
-      name: "Grapes",
-      info: "Plenty nutrients that makes it a healthy choice, and an excellent way to get Vitamin C",
-      price: 2.99,
-    },
-    {
-      img: "/assets/fruite-item-3.jpg",
-      category: "Fruits",
-      name: "Bananas",
-      info: "Contains a fair amaount of carbs, water, fiber, and antioxidants but little protein and no fat",
-      price: "$4.99",
-    },
-    {
-      img: "/assets/fruite-item-2.jpg",
-      category: "Fruits",
-      name: "Raspberries",
-      info: "They are low in calories, but in high in fiber. May protect against diabetes,cancer,obesity.",
-      price: "£4.99",
-    },
-    {
-      img: "/assets/vegetable-item-5.jpg",
-      category: "Vegetables",
-      name: "Potatoes",
-      info: "excellent sources of vitamin C and minerals.",
-      price: "£2.99",
-    },
-    {
-      img: "/assets/vegetable-item-6.jpg",
-      category: "Vegetables",
-      name: "Mint",
-      info: "Helps with digestive health, reducing allergic symptoms, good for cold symptoms ",
-      price: "$4.99",
-    },
-    {
-      img: "/assets/vegetable-item-4.jpg",
-      category: "Vegetables",
-      name: "Bell Pepper",
-      info: "Rich in antioxidants, and may help to protect against certain chronic diseases",
-      price: "£4.99",
-    },
-    {
-      img: "/assets/vegetable-item-1.jpg",
-      category: "Vegetables",
-      name: "Tomatoes",
-      info: "excellent sources of vitamins and minerals",
-      price: "£2.99",
-    },
-    {
-      img: "/assets/fruite-item-1.jpg",
-  
-      category: "Fruits",
-      name: "Oranges",
-      info: "Boosts immune system, youragainst germs, helps your against collagens.",
-      price: "$4.99",
-    },
-    {
-      img: "/assets/fruite-item-6.jpg",
-  
-      category: "Fruits",
-      name: "Apples",
-      info: "A good source of nutrients, including fiber,Vitamin C, and antioxidants which helps to support healthy digestion",
-      price: "£4.99",
-    },
-  ];
-  
+  const { allProducts } = useSelector((state) => state.product);
+  const [displayItem, setDisplayItem] = useState(allProducts);
+
+  useEffect(() => {
+    setDisplayItem(allProducts);
+  }, [allProducts]);
+
+  const handleFilter = (keyword) => {
+    switch (keyword) {
+      case "all":
+        setDisplayItem(allProducts);
+        break;
+      case "simple":
+        setDisplayItem(
+          allProducts.filter((product) => product.category === "simple")
+        );
+        break;
+      case "aggregate":
+        setDisplayItem(
+          allProducts.filter((product) => product.category === "aggregate")
+        );
+        break;
+      case "multiple":
+        setDisplayItem(
+          allProducts.filter((product) => product.category === "multiple")
+        );
+        break;
+      case "veg":
+        setDisplayItem(
+          allProducts.filter((product) => product.category === "vegetables")
+        );
+        break;
+      default:
+        setDisplayItem(allProducts);
+    }
+  };
+
   return (
     <div className="container-fluid fruite py-5">
       <div className="container py-5">
@@ -85,7 +55,7 @@ function FruitShops() {
                   <Link
                     className="d-flex m-2 py-2 bg-light rounded-pill active"
                     data-bs-toggle="pill"
-                    to="/#tab-1"
+                    onClick={() => handleFilter("all")}
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
                       All Products
@@ -96,7 +66,7 @@ function FruitShops() {
                   <Link
                     className="d-flex py-2 m-2 bg-light rounded-pill"
                     data-bs-toggle="pill"
-                    to="/#tab-2"
+                    onClick={() => handleFilter("veg")}
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
                       Vegetables
@@ -107,10 +77,32 @@ function FruitShops() {
                   <Link
                     className="d-flex m-2 py-2 bg-light rounded-pill"
                     data-bs-toggle="pill"
-                    to="/#tab-3"
+                    onClick={() => handleFilter("simple")}
                   >
                     <span className="text-dark" style={{ width: "130px" }}>
-                      Fruits
+                      Fruits (Simple)
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="d-flex m-2 py-2 bg-light rounded-pill"
+                    data-bs-toggle="pill"
+                    onClick={() => handleFilter("aggregate")}
+                  >
+                    <span className="text-dark" style={{ width: "130px" }}>
+                      Fruits (Aggregate)
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="d-flex m-2 py-2 bg-light rounded-pill"
+                    data-bs-toggle="pill"
+                    onClick={() => handleFilter("multiple")}
+                  >
+                    <span className="text-dark" style={{ width: "130px" }}>
+                      Fruits (Multiple)
                     </span>
                   </Link>
                 </li>
@@ -122,7 +114,9 @@ function FruitShops() {
               <div className="row g-4">
                 <div className="col-lg-12">
                   <div className="row g-4">
-                    {items.map(item => <FruitCard key={item.name} fruit={item} />) }
+                    {displayItem.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
                   </div>
                 </div>
               </div>

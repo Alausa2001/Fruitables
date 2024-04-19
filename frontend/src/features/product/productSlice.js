@@ -14,10 +14,10 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         updateProductList: (state, action) => {
-            state.allProducts = action.payload.allFruits;
+            state.allProducts = action.payload.all;
             state.fruits = action.payload.fruits;
             state.veg = action.payload.veg;
-            state.total = action.payload.allFruits.length();
+            state.total = action.payload.all.length;
         }
     }
 })

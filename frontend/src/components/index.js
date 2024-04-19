@@ -12,3 +12,4 @@ export { default as Header } from './Header';
 export { default as Hero } from './Hero';
 export { default as ModalSearch } from './ModalSearch';
 export { default as Testimonial } from './Testimonial';
+export { default as Spinner } from './Spinner';
