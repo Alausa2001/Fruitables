@@ -4,6 +4,7 @@ import {
   About,
   Cart,
   Contact,
+  Checkout,
   Home,
   Layout,
   NotFound,
@@ -12,6 +13,7 @@ import {
   Shop,
   ShopDetail,
 } from "./pages";
+import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
 
 function App() {
   return (
@@ -24,7 +26,10 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="product/:id" element={<ShopDetail />} />
         <Route path="shop" element={<Shop />} />
-        <Route path="cart" element={<Cart />} />
+        <Route element={<AuthOutlet fallbackPath="/login" />}>
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
