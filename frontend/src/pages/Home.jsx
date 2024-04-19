@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateProductList } from "../features/product/productSlice";
-
+import { useDocumentTitle } from '../services/title';
 import {
   Banner,
   Facts,
@@ -17,6 +17,7 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
+  useDocumentTitle("Fruitables - Home")
   // const [loading, setLoading] = useState(true);
 
   useEffect(() => {

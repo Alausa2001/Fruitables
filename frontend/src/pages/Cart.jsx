@@ -2,8 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { ModalSearch } from "../components";
 import { Link } from "react-router-dom";
 import { updateCartQuantity, removeItem } from "../features/cart/cartSlice";
+import { useDocumentTitle } from '../services/title';
 
 const Cart = () => {
+  useDocumentTitle("Fruitables - Cart")
   const { cartItems, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 

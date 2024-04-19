@@ -2,8 +2,10 @@ import { ModalSearch } from "../components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from '../services/title';
 
 const Shop = () => {
+  useDocumentTitle("Fruitables - Shop")
   const { allProducts } = useSelector((state) => state.product);
   const [displayItem, setDisplayItem] = useState(allProducts);
 
@@ -147,7 +149,7 @@ const Shop = () => {
                                   ${product.price} / kg
                                 </p>
                                 <Link
-                                  to={`shop-detail/${product._id}`}
+                                  to={`/product/${product._id}`}
                                   className="btn border border-secondary rounded-pill px-3 text-primary"
                                 >
                                   <i className="fa fa-eye me-2 text-primary"></i>{" "}

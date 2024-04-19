@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useDocumentTitle } from '../services/title';
 
 const Register = () => {
+  useDocumentTitle("Fruitables - Register")
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 

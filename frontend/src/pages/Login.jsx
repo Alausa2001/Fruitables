@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import { useDocumentTitle } from '../services/title';
 
 const Login = () => {
+  useDocumentTitle("Fruitables - Login")
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
   const signin = useSignIn()

@@ -1,4 +1,7 @@
+import { useDocumentTitle } from '../services/title';
+
 const Contact = () => {
+  useDocumentTitle("Fruitables - Contact")
   return (
     <>
       <div className="container-fluid page-header py-5">

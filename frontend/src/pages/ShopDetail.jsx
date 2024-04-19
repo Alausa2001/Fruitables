@@ -3,8 +3,10 @@ import { ModalSearch } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addToCart } from "../features/cart/cartSlice";
+import { useDocumentTitle } from '../services/title';
 
 const ShopDetail = () => {
+  useDocumentTitle("Fruitables - Shop Detail")
   const { id } = useParams();
   const { allProducts } = useSelector((state) => state.product);
   const [product, setProduct] = useState({});
