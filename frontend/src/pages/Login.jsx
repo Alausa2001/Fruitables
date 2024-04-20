@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import { useDocumentTitle } from '../services/title';
 
 const Login = () => {
+  useDocumentTitle("Fruitables - Login")
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
+  const signin = useSignIn()
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -14,29 +18,33 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const data = {
-      password: inputs.password,
-      email: inputs.email,
-    };
-
-    await axios
-      .post("https://fruitables-7yyj.onrender.com/api/v1/signin", data)
-      .then((res) => {
-        if (res.status === "success") {
-          console.log(res);
-          alert(res.message);
-          navigate("/home");
-          return;
+    await axios.post("https://fruitables-7yyj.onrender.com/api/v1/signin", {
+        email: inputs.email,
+        password: inputs.password
+    }).then(res => {
+        const { data, headers } = res;
+        if (data.status === "ok") {
+            if (signin({
+                auth: {
+                    token: headers.authorization,
+                    type: 'Bearer'
+                },
+                userState: data.user
+            })) {
+                alert(`Welcome ${data.user.email}`);
+                navigate("/")
+            }
         }
-        console.log(res);
-        alert(res.message);
+    }).catch(err => {
+        if (err.response.data) {
+            alert(err.response.data.msg);
+        } else {
+            alert("Login unsuccessful, retry ")
+        }
         navigate("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate("/login");
-      });
-  };
+
+    });
+}
 
   return (
     <>
@@ -46,7 +54,7 @@ const Login = () => {
         </h1>
         <ol className="breadcrumb justify-content-center mb-0">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item active text-white">Login</li>
         </ol>
@@ -76,17 +84,14 @@ const Login = () => {
                   name="password"
                   onChange={handleChange}
                 />
-                <button
+                <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-                  type="submit"
-                >
-                  Login
-                </button>
+                  type="submit" value="Login"
+                />
               </form>
-              <a href="/forgot-password">Forget Password</a>
+              <Link to="/forgot-password">Forget Password</Link>
             </div>
             <Link to="/register">Don't have account? Register</Link>
-
             <div className="col-lg-5"></div>
           </div>
         </div>

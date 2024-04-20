@@ -5,7 +5,7 @@
 REQUEST
 
 Method: POST
-Path:   /api/v1/register
+Path:   /api/v1/signup
 Headers:   { Authorization: undefined, 'Content-Type': 'application/json' }
 Body:   {
   phoneNo: '+2348012345672',
@@ -44,7 +44,7 @@ RESPONSE
 REQUEST
 
 Method: POST
-Path:   /api/v1/login
+Path:   /api/v1/signin
 Headers:   { Authorization: undefined, 'Content-Type': 'application/json' }
 Body:   { password: 'Abdulqoyum1!', email: 'adx@gmail.com' }
 
