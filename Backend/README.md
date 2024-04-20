@@ -568,3 +568,24 @@ RESPONSE
     "reference": "ZXZMIUHZ08XYKUJWX7GB"
 }
 ```
+
+# Contact Us
+```
+REQUEST
+
+Method: POST
+Path:   /api/v1/contact_us
+Headers:   { Authorization: undefined, 'Content-Type': 'application/json' }
+Body:   {
+  name: 'Bimbola Ade',
+  email: 'bim@gmail.com',
+  message: 'Please contact me when you have Nike Airforce 1 in stock'
+}
+
+RESPONSE
+
+{
+    "status": "ok",
+    "message": "Thank you for reaching out to Fruitables, you message will be attended to in due time"
+}
+```
