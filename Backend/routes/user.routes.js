@@ -214,21 +214,6 @@ userRouter.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res
 });
 
 
-userRouter.post("/contact_us", logger, async(req, res) => {
-    const { name, email, message } = req.body;
-
-    try {
-        let contactUs = new ContactUs({ name, email, message });
-        await contactUs.save();
-        return res.status(200).json({ status: "success", message: "Your message has been received, thank you for reaching out"})
-    } catch (err) {
-        console.log(err)
-        return res.status(500).json({ status: "ERR", message: "Error occurred, try again later"});
-    }
-})
-
-
-
 userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
     try {
         let fruit
@@ -249,6 +234,23 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
 })
 
 
+
+// Contact Us
+userRouter.post("/contact_us", logger, async(req, res) => {
+    const { name, email, message } = req.body;
+
+    try {
+        let contactUs = new ContactUs({ name, email, message });
+        await contactUs.save();
+        return res.status(200).json({
+            status: "ok", message: "Thank you for reaching out to Fruitables, you message will be attended to in due time"
+        });
+
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({ status: "error", message: "Error occurred, try again later"});
+    }
+})
 
 
 
