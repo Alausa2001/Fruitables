@@ -45,7 +45,7 @@ const ShopDetail = () => {
                   <div className="border rounded">
                     <Link to="#">
                       <img
-                        src="/assets/fruite-item-5.jpg"
+                        src={product.imageUrl}
                         className="img-fluid rounded"
                         alt="FruiteImage"
                       />
