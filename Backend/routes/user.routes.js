@@ -5,7 +5,8 @@ import User from "../models/user.js"
 import { Fruit } from "../models/fruits.js";
 import { Cart, CartItem } from "../models/cart.js";
 import Checkout from "../models/checkout.js";
-import logger from "../middlewares/logger.js"
+import logger from "../middlewares/logger.js";
+import ContactUs from "../models/contact.js";
 import Paystack from "../utils/paystack.js";
 
 
