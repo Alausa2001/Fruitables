@@ -1,4 +1,4 @@
-import mongoose from "./mongodb_conn.js"
+import mongoose from "./db_conn.js"
 import { Schema } from 'mongoose';
 
 
