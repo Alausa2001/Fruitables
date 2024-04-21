@@ -257,10 +257,9 @@ userRouter.post("/contact_us", logger, async(req, res) => {
 
 // Checkout Routes
 userRouter.post("/checkout/:userId", logger, async(req, res) => {
-    const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems} = req.body;
+    const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems} = req.body.formData;
     try {
         let quantityInStock;
-        console.log({firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems})
         for (let item of cartItems) {
             const fruit = await Fruit.findOne({ _id: item._id });
 
