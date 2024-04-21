@@ -25,7 +25,7 @@ const Checkout = () => {
     email: user.email,
     userId: user._id,
     total: total,
-    cartItems: cartItems,
+    cartItems
   });
 
   const handleChange = (e) => {
@@ -37,7 +37,6 @@ const Checkout = () => {
     e.preventDefault();
     setIsLoading(true);
     console.log(formData);
-    console.log(cartItems);
     await axios
       .post(
         `https://fruitables-7yyj.onrender.com/api/v1/checkout/${user._id}`,
@@ -203,9 +202,8 @@ const Checkout = () => {
                     type="email"
                     name="email"
                     className="form-control"
-                    value={formData.email || ""}
-                    onChange={handleChange}
-                    required
+                    defaultValue={formData.email}
+                    readOnly
                   />
                 </div>
                 <div className="form-item">
