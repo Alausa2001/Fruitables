@@ -1,15 +1,27 @@
 // Header
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useSignOut from "react-auth-kit/hooks/useSignOut";
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 // import { Spinner } from "./Spinner";
 
-
 const Header = () => {
-  const { quantity } = useSelector(state => state.cart);
+  const { quantity } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const logout = useSignOut();
+  const isAuthenticated = useIsAuthenticated();
+
+  const handleLoginIcon = () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Do you want to logout?")) {
+      logout();
+      navigate("/");
+    }
+  };
   return (
     <div>
-      <div className="container-fluid fixed-top">
+      <div className="container-fluid fixed-top" id="top">
         <div className="container topbar bg-primary d-none d-lg-block">
           <div className="d-flex justify-content-between">
             <div className="top-info ps-2">
@@ -93,9 +105,19 @@ const Header = () => {
                     {quantity}
                   </span>
                 </Link>
-                <Link to="/login" className="my-auto" title="icon">
-                  <i className="fas fa-user fa-2x"></i>
-                </Link>
+                {isAuthenticated ? (
+                  <div
+                    onClick={handleLoginIcon}
+                    className="my-auto"
+                    title="icon"
+                  >
+                    <i className="fas fa-user fa-2x"></i>
+                  </div>
+                ) : (
+                  <Link to="/login" className="my-auto" title="icon">
+                    <i className="fas fa-user fa-2x"></i>
+                  </Link>
+                )}
               </div>
             </div>
           </nav>

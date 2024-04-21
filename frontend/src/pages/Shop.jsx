@@ -125,7 +125,7 @@ const Shop = () => {
                   <div className="col-lg-9">
                     <div className="row g-4 justify-content-center">
                       {displayItem.map((product) => (
-                        <div className="col-md-6 col-lg-6 col-xl-4">
+                        <div key={product._id} className="col-md-6 col-lg-6 col-xl-4">
                           <div className="rounded position-relative fruite-item">
                             <div className="fruite-img">
                               <img

@@ -1,17 +1,50 @@
-import { useDocumentTitle } from '../services/title';
+import { useDocumentTitle } from "../services/title";
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
-  useDocumentTitle("Fruitables - Contact")
+  useDocumentTitle("Fruitables - Contact");
+  const [inputs, setInputs] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs((fields) => ({ ...fields, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    await axios
+      .post(`https://fruitables-7yyj.onrender.com/api/v1/contact_us`, {
+        name: inputs.name,
+        email: inputs.email,
+        message: inputs.message,
+      })
+      .then((res) => {
+        setIsLoading(false);
+        alert(res.data.message);
+        setInputs({});
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        alert("Your request can't be processed at the moment.");
+      });
+  };
+
   return (
     <>
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">Contact</h1>
         <ol className="breadcrumb justify-content-center mb-0">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <a href="/contact">Pages</a>
+            <Link to="/contact">Pages</Link>
           </li>
           <li className="breadcrumb-item active text-white">Contact</li>
         </ol>
@@ -42,29 +75,37 @@ const Contact = () => {
                 </div>
               </div>
               <div className="col-lg-7">
-                <form action="" className="">
+                <form action="" className="" onSubmit={handleSubmit}>
                   <input
                     type="text"
                     className="w-100 form-control border-0 py-3 mb-4"
                     placeholder="Your Name"
+                    name="name"
+                    value={inputs.name || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="email"
                     className="w-100 form-control border-0 py-3 mb-4"
                     placeholder="Enter Your Email"
+                    name="email"
+                    value={inputs.email || ""}
+                    onChange={handleChange}
                   />
                   <textarea
                     className="w-100 form-control border-0 mb-4"
                     rows="5"
                     cols="10"
                     placeholder="Your Message"
+                    name="message"
+                    onChange={handleChange}
                   ></textarea>
-                  <button
+                  <input
                     className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
                     type="submit"
-                  >
-                    Submit
-                  </button>
+                    value={isLoading ? "Please wait..." : "Submit"}
+                    disabled={isLoading}
+                  />
                 </form>
               </div>
               <div className="col-lg-5">

@@ -84,6 +84,7 @@ const Cart = () => {
                           type="text"
                           className="form-control form-control-sm text-center border-0"
                           value={item.quantity}
+                          readOnly
                         />
                         <div className="input-group-btn">
                           <button
