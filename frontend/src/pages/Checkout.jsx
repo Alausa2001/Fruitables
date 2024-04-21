@@ -1,5 +1,5 @@
 import { ModalSearch } from "../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
@@ -10,7 +10,6 @@ const Checkout = () => {
   const { cartItems, total } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(false);
   const user = useAuthUser();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -48,7 +47,7 @@ const Checkout = () => {
         const { status, authorization_url } = res.data;
         if (status === "ok") {
           dispatch(clearCart());
-          navigate(authorization_url);
+          window.location.href = authorization_url;
         }
       })
       .catch((err) => {
