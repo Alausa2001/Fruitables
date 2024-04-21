@@ -260,7 +260,7 @@ userRouter.post("/checkout/:userId", logger, async(req, res) => {
     const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems} = req.body;
     try {
         let quantityInStock;
-        console.log(req.body.cartItems)
+        console.log({firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems})
         for (let item of cartItems) {
             const fruit = await Fruit.findOne({ _id: item._id });
 
