@@ -25,7 +25,7 @@ const Checkout = () => {
     email: user.email,
     userId: user._id,
     total: total,
-    cartItems,
+    cartItems: cartItems,
   });
 
   const handleChange = (e) => {
