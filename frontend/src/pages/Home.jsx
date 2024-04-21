@@ -1,9 +1,9 @@
 // Home page
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateProductList } from "../features/product/productSlice";
-import { useDocumentTitle } from '../services/title';
+import { useDocumentTitle } from "../services/title";
 import {
   Banner,
   Facts,
@@ -12,13 +12,14 @@ import {
   FruitShops,
   Hero,
   ModalSearch,
-  Testimonial,
+  // Testimonial,
+  Spinner,
 } from "../components";
 
 const Home = () => {
   const dispatch = useDispatch();
-  useDocumentTitle("Fruitables - Home")
-  // const [loading, setLoading] = useState(true);
+  useDocumentTitle("Fruitables - Home");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -33,7 +34,7 @@ const Home = () => {
               veg: vegetables,
             })
           );
-          // setLoading(false)
+          setLoading(false);
         }
       })
       .catch((err) => {
@@ -43,14 +44,20 @@ const Home = () => {
 
   return (
     <>
-      <ModalSearch />
-      <Hero />
-      <FeatureSection />
-      <FruitShops />
-      <Features />
-      <Banner />
-      <Facts />
-      <Testimonial />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <ModalSearch />
+          <Hero />
+          <FeatureSection />
+          <FruitShops />
+          <Features />
+          <Banner />
+          <Facts />
+          {/* <Testimonial /> */}{" "}
+        </>
+      )}
     </>
   );
 };

@@ -11,3 +11,4 @@ export { default as Register } from './Register';
 export { default as ShopDetail } from './ShopDetail';
 export { default as Shop } from './Shop';
 export { default as Checkout } from './Checkout';
+export { default as ForgetPassword } from './ForgetPassword';

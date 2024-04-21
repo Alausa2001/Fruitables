@@ -7,6 +7,7 @@ const Register = () => {
   useDocumentTitle("Fruitables - Register")
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -16,7 +17,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     await axios
       .post("https://fruitables-7yyj.onrender.com/api/v1/signup", {
         phoneNo: inputs.phone,
@@ -108,7 +109,8 @@ const Register = () => {
                 <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
                   type="submit"
-                  value="Register"
+                  value={isLoading ? "Please wait...": "Register"}
+                  disabled={isLoading}
                 />
               </form>
               <Link to="/login">already a user? Login</Link>

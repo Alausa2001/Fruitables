@@ -8,6 +8,7 @@ import {
   Home,
   Layout,
   NotFound,
+  ForgetPassword,
   Login,
   Register,
   Shop,
@@ -22,6 +23,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="forget-password" element={<ForgetPassword />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="product/:id" element={<ShopDetail />} />

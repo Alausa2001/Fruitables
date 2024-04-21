@@ -9,6 +9,7 @@ const Login = () => {
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
   const signin = useSignIn()
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -18,6 +19,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     await axios.post("https://fruitables-7yyj.onrender.com/api/v1/signin", {
         email: inputs.email,
         password: inputs.password
@@ -31,11 +33,12 @@ const Login = () => {
                 },
                 userState: data.user
             })) {
-                alert(`Welcome ${data.user.email}`);
+                alert(`Welcome ${data.user.firstname}`);
                 navigate("/")
             }
         }
     }).catch(err => {
+      setIsLoading(false);
         if (err.response.data) {
             alert(err.response.data.msg);
         } else {
@@ -86,7 +89,7 @@ const Login = () => {
                 />
                 <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-                  type="submit" value="Login"
+                  type="submit" value={isLoading ? "Please wait...": "Login"} disabled={isLoading}
                 />
               </form>
               <Link to="/forgot-password">Forget Password</Link>
