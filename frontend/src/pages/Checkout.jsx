@@ -36,6 +36,8 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log(formData);
+    console.log(cartItems);
     await axios
       .post(
         `https://fruitables-7yyj.onrender.com/api/v1/checkout/${user._id}`,
