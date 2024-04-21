@@ -257,29 +257,41 @@ userRouter.post("/contact_us", logger, async(req, res) => {
 
 // Checkout Routes
 userRouter.post("/checkout/:userId", logger, async(req, res) => {
-    const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total} = req.body;
+    const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems} = req.body;
     try {
-        let cart = await CartItem.findOne({ status: "not paid"});
-        if (!cart) {
-            return res.status(404).json({ status: "error", msg: "no Item on cart"});
+        let quantityInStock;
+        for (let item of cartItems) {
+            const fruit = await Fruit.findOne({ _id: item._id });
+
+            if (!fruit) {
+                return res.status(404).json({ status: "error", message: `${item.name} (${item.category}) not in stock`})
+            }
+
+            quantityInStock = fruit.quantityAvailable;
+            if (quantityInStock < parseInt(item.quantity)) {
+                return res.status(400).json({
+                    status: "error",
+                    message: `Only ${quantityInStock} of ${item.name} (${item.category}) is available, you selected ${item.quantity}`});
+            }
         }
+
         const newCheckout = new Checkout({
             firstname, lastname, address, city,
-            postalCode, mobile, email, status, user: userId, cart: req.params.cartId, total
+            postalCode, mobile, email, status: "paid", user: userId,  total
         });
-
-        cart = await Cart.findOne({ user: req.params.userId })
 
         const payment = await InitializePayment({ email, amount: parseInt(total) * 100 });
 
         if (payment.data.authorization_url) {
             await newCheckout.save();
-            console.log(cart._id)
-            await CartItem.updateMany({ cart: cart._id}, { status: "paid" })
+
+            for (let item of cartItems) {
+                const fruits = await Fruit.findOne({ _id: item._id });
+                const updateQuantity = await Fruit.findByIdAndUpdate(fruits._id, { quantityAvailable: fruits.quantityAvailable - parseInt(item.quantity) });
+            }
             return res.status(200).json({ status: "ok", ...payment.data });
         }
-        return res.status(500).json({ status: "error", message: "Couldn't generate payment link"});
-
+        return res.status(500).json({ status: "error", message: "Error occurred with payment, try again later"});
     } catch(err) {
         console.log(err);
         return res.status(500).json({ status: "error", msg: "internal server error"});
