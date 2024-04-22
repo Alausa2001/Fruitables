@@ -95,7 +95,7 @@ const Login = () => {
                   type="submit" value={isLoading ? "Please wait..." : "Login"} disabled={isLoading}
                 />
               </form>
-              <Link to="/forgot-password">Forget Password</Link>
+              <Link to="/forget-password">Forget Password</Link>
             </div>
             <Link to="/register">Don't have account? Register</Link>
             <div className="col-lg-5"></div>
