@@ -10,6 +10,7 @@ const Shop = () => {
   const [displayItem, setDisplayItem] = useState(allProducts);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setDisplayItem(allProducts);
   }, [allProducts]);
 

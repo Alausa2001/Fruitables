@@ -5,8 +5,11 @@ import { useState } from "react";
 import axios from "axios";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { clearCart } from "../features/cart/cartSlice";
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
+  window.scrollTo(0, 0);
   const { cartItems, total } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(false);
   const user = useAuthUser();
@@ -53,9 +56,9 @@ const Checkout = () => {
       })
       .catch((err) => {
         if (err.response?.data?.message) {
-          alert(err.response.data.message);
+          toast.error(err.response.data.message);
         } else {
-          alert("Request unsuccessful, retry");
+          toast.error("Request unsuccessful, retry");
         }
         setIsLoading(false);
         console.log(err);
@@ -63,6 +66,7 @@ const Checkout = () => {
   };
   return (
     <>
+      <ToastContainer position="top-center" />
       <ModalSearch />
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">Checkout</h1>

@@ -1,6 +1,7 @@
 import { useDocumentTitle } from '../services/title';
 
 function About() {
+  window.scrollTo(0, 0);
   useDocumentTitle("Fruitables - About");
   
   return (

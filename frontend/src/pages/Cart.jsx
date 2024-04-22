@@ -3,6 +3,8 @@ import { ModalSearch } from "../components";
 import { Link } from "react-router-dom";
 import { updateCartQuantity, removeItem } from "../features/cart/cartSlice";
 import { useDocumentTitle } from '../services/title';
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   useDocumentTitle("Fruitables - Cart")
@@ -11,8 +13,8 @@ const Cart = () => {
 
   return (
     <>
+      <ToastContainer position="top-center" />
       <ModalSearch />
-
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">Cart</h1>
         <ol className="breadcrumb justify-content-center mb-0">

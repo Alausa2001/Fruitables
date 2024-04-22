@@ -2,8 +2,11 @@ import { useDocumentTitle } from "../services/title";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
+  window.scrollTo(0, 0);
   useDocumentTitle("Fruitables - Contact");
   const [inputs, setInputs] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -25,18 +28,19 @@ const Contact = () => {
       })
       .then((res) => {
         setIsLoading(false);
-        alert(res.data.message);
+        toast.success(res.data.message);
         setInputs({});
       })
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
-        alert("Your request can't be processed at the moment.");
+        toast.info("Your request can't be processed at the moment.");
       });
   };
 
   return (
     <>
+      <ToastContainer position="top-center" />
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">Contact</h1>
         <ol className="breadcrumb justify-content-center mb-0">
