@@ -1,13 +1,5 @@
 import nodemailer from "nodemailer";
 
-/*
-EMAIL_HOST=mail.codinmage.org
-EMAIL_PORT=465
-EMAIL_USERNAME=developer@codinmage.org
-EMAIL_PASSWORD=CodinMageDeveloper
-EMAIL_FROM=developer@codinmage.org
-*/
-
 
 
 const sendMail = async (recipient, title, content) => {
@@ -26,9 +18,9 @@ const sendMail = async (recipient, title, content) => {
       console.log("Here")
       const message = {
         from: "ecommerceapp123123@gmail.com",
-        to: "oluwaferanmialausa2001@gmail.com",
-        subject: "Forgot password",
-        html: "<p>New password: 123133</p>",
+        to: recipient,
+        subject: title,
+        html: content,
       };
       transporter.sendMail(message, () => {
         console.log("email sent");
