@@ -6,6 +6,9 @@ import { addToCart } from "../features/cart/cartSlice";
 import { useDocumentTitle } from "../services/title";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import axios from "axios";
+import { Rating } from 'react-simple-star-rating'
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const ShopDetail = () => {
   useDocumentTitle("Fruitables - Shop Detail");
@@ -20,8 +23,11 @@ const ShopDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
   const [inputs, setInputs] = useState({});
+  const [ratingValue, setRatingValue] = useState(0);
+  let reload = true;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const found = allProducts.find((item) => item._id === id);
     if (!found) {
       navigate("/notfound");
@@ -42,7 +48,7 @@ const ShopDetail = () => {
     };
 
     getReviews();
-  }, [id, allProducts, navigate]);
+  }, [id, allProducts, navigate, reload]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -54,14 +60,15 @@ const ShopDetail = () => {
     setIsLoading(true);
     e.preventDefault();
     await axios
-      .post(`/api/v1/fruits/${id}/review`, {
+      .post(`https://fruitables-7yyj.onrender.com/api/v1/fruits/${id}/review`, {
         name: inputs.name,
         review: inputs.review,
-        rating: 4,
+        rating: ratingValue,
       })
       .then((res) => {
         setIsLoading(false);
-        alert("Review Added");
+        toast.success("Review Added");
+        reload = false;
         navigate("/");
       })
       .catch((err) => {
@@ -70,8 +77,13 @@ const ShopDetail = () => {
       });
   };
 
+  const handleRating = (rate) => {
+    setRatingValue(rate);
+  };
+
   return (
     <>
+      <ToastContainer position="top-center" />
       {isLoading ? (
         <Spinner />
       ) : (
@@ -159,10 +171,10 @@ const ShopDetail = () => {
                           if (isAuthenticated) {
                             setButtonDisable(true);
                             dispatch(addToCart({ ...product, quantity }));
-                            alert("Item added to cart");
+                            toast.success("Item added to cart");
                             return;
                           }
-                          alert("Authentication is required");
+                          toast.warning("Authentication is required");
                           navigate("/login");
                           return;
                         }}
@@ -284,12 +296,8 @@ const ShopDetail = () => {
                                   </p>
                                   <div className="d-flex justify-content-between">
                                     <h5>{item.name}</h5>
-                                    <div className="d-flex mb-3">
-                                      <i className="fa fa-star text-secondary"></i>
-                                      <i className="fa fa-star text-secondary"></i>
-                                      <i className="fa fa-star text-secondary"></i>
-                                      <i className="fa fa-star text-secondary"></i>
-                                      <i className="fa fa-star"></i>
+                                    <div className="d-flex mb-3" style={{ paddingLeft: '5px' }}>
+                                      <Rating initialValue={item.rating} readonly={true} size={20} />
                                     </div>
                                   </div>
                                   <p>{item.review}</p>
@@ -364,11 +372,7 @@ const ShopDetail = () => {
                                 className="d-flex align-items-center"
                                 style={{ fontSize: "12px" }}
                               >
-                                <i className="fa fa-star text-muted"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
+                                <Rating onClick={handleRating} initialValue={ratingValue} size={20} />
                               </div>
                             </div>
                             <input

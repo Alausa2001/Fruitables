@@ -1,16 +1,18 @@
 import { ModalSearch } from "../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { clearCart } from "../features/cart/cartSlice";
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
+  window.scrollTo(0, 0);
   const { cartItems, total } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(false);
   const user = useAuthUser();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ const Checkout = () => {
     email: user.email,
     userId: user._id,
     total: total,
-    cartItems,
+    cartItems
   });
 
   const handleChange = (e) => {
@@ -37,6 +39,7 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log(formData);
     await axios
       .post(
         `https://fruitables-7yyj.onrender.com/api/v1/checkout/${user._id}`,
@@ -48,14 +51,14 @@ const Checkout = () => {
         const { status, authorization_url } = res.data;
         if (status === "ok") {
           dispatch(clearCart());
-          navigate(authorization_url);
+          window.location.href = authorization_url;
         }
       })
       .catch((err) => {
         if (err.response?.data?.message) {
-          alert(err.response.data.message);
+          toast.error(err.response.data.message);
         } else {
-          alert("Request unsuccessful, retry");
+          toast.error("Request unsuccessful, retry");
         }
         setIsLoading(false);
         console.log(err);
@@ -63,6 +66,7 @@ const Checkout = () => {
   };
   return (
     <>
+      <ToastContainer position="top-center" />
       <ModalSearch />
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">Checkout</h1>
@@ -202,9 +206,8 @@ const Checkout = () => {
                     type="email"
                     name="email"
                     className="form-control"
-                    value={formData.email || ""}
-                    onChange={handleChange}
-                    required
+                    defaultValue={formData.email}
+                    readOnly
                   />
                 </div>
                 <div className="form-item">

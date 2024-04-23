@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { useDocumentTitle } from '../services/title';
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   useDocumentTitle("Fruitables - Login")
@@ -21,36 +23,37 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     await axios.post("https://fruitables-7yyj.onrender.com/api/v1/signin", {
-        email: inputs.email,
-        password: inputs.password
+      email: inputs.email,
+      password: inputs.password
     }).then(res => {
-        const { data, headers } = res;
-        if (data.status === "ok") {
-            if (signin({
-                auth: {
-                    token: headers.authorization,
-                    type: 'Bearer'
-                },
-                userState: data.user
-            })) {
-                alert(`Welcome ${data.user.firstname}`);
-                navigate("/")
-            }
+      const { data, headers } = res;
+      if (data.status === "ok") {
+        if (signin({
+          auth: {
+            token: headers.authorization,
+            type: 'Bearer'
+          },
+          userState: data.user
+        })) {
+          toast.success(`Welcome ${data.user.firstname}`);
+          navigate("/")
         }
+      }
     }).catch(err => {
       setIsLoading(false);
-        if (err.response.data) {
-            alert(err.response.data.msg);
-        } else {
-            alert("Login unsuccessful, retry ")
-        }
-        navigate("/login");
+      if (err.response.data) {
+        toast.error(err.response.data.msg);
+      } else {
+        toast.error("Login unsuccessful, retry ")
+      }
+      navigate("/login");
 
     });
-}
+  }
 
   return (
     <>
+      <ToastContainer position="top-center" />
       <div className="container-fluid page-header py-5">
         <h1 className="text-center text-white display-6">
           Login to Natural Fruit
@@ -89,10 +92,10 @@ const Login = () => {
                 />
                 <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-                  type="submit" value={isLoading ? "Please wait...": "Login"} disabled={isLoading}
+                  type="submit" value={isLoading ? "Please wait..." : "Login"} disabled={isLoading}
                 />
               </form>
-              <Link to="/forgot-password">Forget Password</Link>
+              <Link to="/forget-password">Forget Password</Link>
             </div>
             <Link to="/register">Don't have account? Register</Link>
             <div className="col-lg-5"></div>

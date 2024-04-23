@@ -2,8 +2,11 @@ import { ModalSearch } from "../components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = () => {
+  window.scrollTo(0, 0);
   const [submitted, setSubmitted] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -17,7 +20,7 @@ const ForgetPassword = () => {
       .then((res) => {
         const { status } = res.data;
         if (status === "ok") {
-          alert("Reset password link sent");
+          toast.success("Reset password link sent");
         }
       });
   };
@@ -27,8 +30,8 @@ const ForgetPassword = () => {
   };
   return (
     <>
+      <ToastContainer position="top-center" />
       <ModalSearch />
-
       <div className="container-fluid page-header py-5">
         <ol className="breadcrumb justify-content-center mb-0">
           <li className="breadcrumb-item">
@@ -53,6 +56,7 @@ const ForgetPassword = () => {
                   placeholder="Enter Your Email"
                   value={email}
                   onChange={handleChange}
+                  required
                 />
                 <input
                   className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
