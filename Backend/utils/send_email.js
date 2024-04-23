@@ -15,7 +15,6 @@ const sendMail = async (recipient, title, content) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Here")
       const message = {
         from: "ecommerceapp123123@gmail.com",
         to: recipient,
