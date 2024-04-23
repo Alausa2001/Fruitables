@@ -137,8 +137,8 @@ fruitRouter.post("/:id/review", logger, async(req, res) => {
     }
 })
 
-fruitRouter.post("/search", logger, async (req, res) => {
-    const search = req.body.search;
+fruitRouter.get("/search", logger, async (req, res) => {
+    const search = req.query.search;
 
     try {
         const regexPattern = new RegExp(`.*${search}.*`, 'i');
