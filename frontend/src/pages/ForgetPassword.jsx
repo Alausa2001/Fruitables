@@ -6,7 +6,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = () => {
-  window.scrollTo(0, 0);
   const [submitted, setSubmitted] = useState(false);
   const [email, setEmail] = useState("");
 
