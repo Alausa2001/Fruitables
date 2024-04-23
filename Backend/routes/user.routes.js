@@ -107,7 +107,8 @@ userRouter.post("/forget-password", logger, async(req, res) => {
         }
 
         // Add randomization
-        let newPwd = `${user.email.slice(2, 6)}-${user._id.slice(3, 6)}`;
+        const userId = JSON.stringify(user._id)
+        let newPwd = `${user.email.slice(2, 6)}-${userId.slice(3, 6)}`;
 
         const content = `<p>Hello ${user.firstname}</p> <br> <p>Your new password is ${newPwd}</p>`
         const salt = await bcrypt.genSalt(10);
