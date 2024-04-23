@@ -114,7 +114,7 @@ userRouter.post("/forget-password", logger, async(req, res) => {
         const salt = await bcrypt.genSalt(10);
         newPwd = await bcrypt.hash(newPwd, salt);
 
-        await sendEmail(user.email, "New Password", content);
+        await sendMail(user.email, "New Password", content);
         await User.findByIdAndUpdate(user._id, { password: newPwd });
         return res.status(200).json({ status: "ok", msg: "A new password has been sent to your mail"})
     } catch(err) {
