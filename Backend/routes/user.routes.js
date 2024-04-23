@@ -111,7 +111,6 @@ userRouter.post("/forget-password", logger, async(req, res) => {
         let newPwd = `${user.email.slice(1, 5)}-${userId.slice(2, 5)}`;
 
         const content = `<p>Hello ${user.firstname}</p> <br> <p>Your new password is ${newPwd}</p>`
-        console.log(user)
         const salt = await bcrypt.genSalt(10);
         newPwd = await bcrypt.hash(newPwd, salt);
 
