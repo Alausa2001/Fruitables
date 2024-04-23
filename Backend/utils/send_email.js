@@ -6,8 +6,8 @@ const sendMail = async (recipient, title, content) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "ecommerceapp123123@gmail.com",
-      pass: "nrvdlrmubqwutanr",
+      user: "deborahonaojosule@gmail.com",
+      pass: "mxrhjsbxnghpwtaw",
     }
   });
   
@@ -16,7 +16,7 @@ const sendMail = async (recipient, title, content) => {
       console.log(error);
     } else {
       const message = {
-        from: "ecommerceapp123123@gmail.com",
+        from: "deborahonaojosule@gmail.com",
         to: recipient,
         subject: title,
         html: content,
@@ -28,7 +28,5 @@ const sendMail = async (recipient, title, content) => {
   });
 }
 
-
-//sendMail(["oluwaferanmialausa2001@gmail.com"], "Forgot password", "<p>New password: 123133</p>");
 
 export default sendMail;
