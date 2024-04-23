@@ -29,7 +29,7 @@ const ModalSearch = () => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-fullscreen" style={{background: 'white', opacity: '.6', height: '100%'}}>
+      <div className="modal-dialog modal-fullscreen" style={{background: 'white', opacity: '.8', height: '100%'}}>
         <div className="modal-content rounded-0">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
