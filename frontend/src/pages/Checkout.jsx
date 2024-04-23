@@ -9,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-  window.scrollTo(0, 0);
   const { cartItems, total } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(false);
   const user = useAuthUser();
