@@ -8,6 +8,7 @@ import Checkout from "../models/checkout.js";
 import logger from "../middlewares/logger.js";
 import ContactUs from "../models/contact.js";
 import Paystack from "../utils/paystack.js";
+import sendMail from "../utils/send_email.js";
 
 
 
@@ -92,10 +93,34 @@ userRouter.post('/signin', logger, async (req, res) => {
     } catch (err) {
         // error logger goes here
         console.log(err)
-        return res.status(500).json({ status: "error", msg: "error occured while logging in"})
+        return res.status(500).json({ status: "error", msg: "error occured while logging in"});
     }
 });
 
+userRouter.post("/forget-password", logger, async(req, res) => {
+    const email = req.body.email;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ status: "error", msg: "Account not found"})
+        }
+
+        // Add randomization
+        let newPwd = `${user.email.slice(2, 6)}-${user._id.slice(3, 6)}`;
+
+        const content = `<p>Hello ${user.firstname}</p> <br> <p>Your new password is ${newPwd}</p>`
+        const salt = await bcrypt.genSalt(10);
+        newPwd = await bcrypt.hash(newPwd, salt);
+
+        await sendEmail(user.email, "New Password", content);
+        await User.findByIdAndUpdate(user._id, { password: newPwd });
+        return res.status(200).json({ status: "ok", msg: "A new password has been sent to your mail"})
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({ status: "error", msg: "error occured, try again later"});
+    }
+});
 
 
 // Routes for a user's cart items
