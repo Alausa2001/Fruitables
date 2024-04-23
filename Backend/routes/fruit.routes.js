@@ -137,6 +137,22 @@ fruitRouter.post("/:id/review", logger, async(req, res) => {
     }
 })
 
+fruitRouter.post("/search", logger, async (req, res) => {
+    const search = req.body.search;
+
+    try {
+        const regexPattern = new RegExp(`.*${search}.*`, 'i');
+        const pipeline = [{ $match: { name: { $regex: regexPattern } } }];
+        const fruits = await Fruit.aggregate(pipeline);
+        if (!fruits[0]) {
+            return res.status(404).json({ status: "error", msg: "No fruits found"})
+        }
+        res.status(200).json({ status: "ok", fruits })
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ status: "error", msg: "Error occurred during search"});
+    }
+});
 
 
 fruitRouter.get("/:id/reviews", logger, async(req, res) => {
