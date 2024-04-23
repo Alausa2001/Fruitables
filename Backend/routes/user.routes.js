@@ -268,7 +268,8 @@ userRouter.post("/contact_us", logger, async(req, res) => {
 
     try {
         let contactUs = new ContactUs({ name, email, message });
-        await sendMail("ecommerceapp123123@gmail.com", "Customer Request", message);
+        const content = `<p>From ${name}</p><br><p>Customer's email: ${email}</p><br>Message: ${message}`;
+        await sendMail("ecommerceapp123123@gmail.com", "Customer Request", content);
         await contactUs.save();
         return res.status(200).json({
             status: "ok", message: "Thank you for reaching out to Fruitables, you message will be attended to in due time"
