@@ -9,6 +9,7 @@ import logger from "../middlewares/logger.js";
 import ContactUs from "../models/contact.js";
 import Paystack from "../utils/paystack.js";
 import sendMail from "../utils/send_email.js";
+import randomPassword from "../utils/random_password.js";
 
 
 
@@ -106,9 +107,8 @@ userRouter.post("/forget-password", logger, async(req, res) => {
             return res.status(400).json({ status: "error", msg: "Account not found"})
         }
 
-        // Add randomization
-        const userId = JSON.stringify(user._id)
-        let newPwd = `${user.email.slice(1, 5)}-${userId.slice(2, 5)}`;
+        // Generates a random password
+        let newPwd = await randomPassword(7, "alphaNumeric");
 
         const content = `<p>Hello ${user.firstname}</p> <br> <p>Your new password is ${newPwd}</p>`
         const salt = await bcrypt.genSalt(10);
