@@ -140,6 +140,10 @@ fruitRouter.post("/:id/review", logger, async(req, res) => {
 fruitRouter.get("/search", logger, async (req, res) => {
     const search = req.query.search;
 
+    if (!search) {
+        return res.status(400).json({ status: "error", msg: "Enter your search text"});
+    }
+
     try {
         const regexPattern = new RegExp(`.*${search}.*`, 'i');
         const pipeline = [{ $match: { name: { $regex: regexPattern } } }];
