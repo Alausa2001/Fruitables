@@ -8,6 +8,7 @@ import Checkout from "../models/checkout.js";
 import logger from "../middlewares/logger.js";
 import ContactUs from "../models/contact.js";
 import Paystack from "../utils/paystack.js";
+import sendMail from "../utils/send_email.js";
 
 
 
@@ -92,10 +93,35 @@ userRouter.post('/signin', logger, async (req, res) => {
     } catch (err) {
         // error logger goes here
         console.log(err)
-        return res.status(500).json({ status: "error", msg: "error occured while logging in"})
+        return res.status(500).json({ status: "error", msg: "error occured while logging in"});
     }
 });
 
+userRouter.post("/forget-password", logger, async(req, res) => {
+    const email = req.body.email;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ status: "error", msg: "Account not found"})
+        }
+
+        // Add randomization
+        const userId = JSON.stringify(user._id)
+        let newPwd = `${user.email.slice(1, 5)}-${userId.slice(2, 5)}`;
+
+        const content = `<p>Hello ${user.firstname}</p> <br> <p>Your new password is ${newPwd}</p>`
+        const salt = await bcrypt.genSalt(10);
+        newPwd = await bcrypt.hash(newPwd, salt);
+
+        await sendMail(user.email, "New Password", content);
+        await User.findByIdAndUpdate(user._id, { password: newPwd });
+        return res.status(200).json({ status: "ok", msg: "A new password has been sent to your mail"})
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({ status: "error", msg: "error occured, try again later"});
+    }
+});
 
 
 // Routes for a user's cart items
@@ -242,6 +268,8 @@ userRouter.post("/contact_us", logger, async(req, res) => {
 
     try {
         let contactUs = new ContactUs({ name, email, message });
+        const content = `<p>From ${name}</p><br><p>Customer's email: ${email}</p><br>Message: ${message}`;
+        await sendMail("ecommerceapp123123@gmail.com", "Customer Request", content);
         await contactUs.save();
         return res.status(200).json({
             status: "ok", message: "Thank you for reaching out to Fruitables, you message will be attended to in due time"
