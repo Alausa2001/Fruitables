@@ -6,7 +6,7 @@ const ModalSearch = () => {
 
   const [searchInput, setSearchInput] = useState("");
   const { allProducts } = useSelector(state => state.product);
-  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -14,10 +14,9 @@ const ModalSearch = () => {
 
     if (searchInput.length > 0) {
       const found = allProducts.filter((product) => {
-        console.log(product)
-        return product.name.includes(searchInput) || product.category.includes(searchInput)
+        return product.name.toLowerCase().includes(searchInput.toLowerCase()) || product.category.toLowerCase().includes(searchInput.toLowerCase()) || product.description.toLowerCase().includes(searchInput.toLowerCase())
       })
-      setItems(found);
+      setProducts(found);
     }
   };
 
@@ -30,7 +29,7 @@ const ModalSearch = () => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-fullscreen">
+      <div className="modal-dialog modal-fullscreen" style={{background: 'white', opacity: '.6', height: '100%'}}>
         <div className="modal-content rounded-0">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
@@ -59,7 +58,7 @@ const ModalSearch = () => {
           </div>
           <div className="col-lg-9" style={{height: '100%'}}>
               <div className="row g-4 justify-content-center" style={{height: '100%'}}>
-                {items.map((product) => (
+                {products.map((product) => (
                   <div key={product._id} className="col-md-6 col-lg-6 col-xl-4">
                     <div className="rounded position-relative fruite-item">
                       <div className="fruite-img">
