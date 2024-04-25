@@ -31,7 +31,7 @@ const Register = () => {
         phoneNo: inputs.phone,
         password: inputs.password,
         email: inputs.email,
-        fullname: inputs.email,
+        fullname: `${inputs.firstname} ${inputs.surname}`,
       })
       .then((res) => {
         const { data } = res;
