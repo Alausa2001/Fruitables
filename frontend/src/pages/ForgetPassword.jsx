@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const ForgetPassword = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -13,7 +14,7 @@ const ForgetPassword = () => {
     e.preventDefault();
     setSubmitted(true);
     await axios
-      .post("https://fruitables-7yyj.onrender.com/api/v1/forget-password", {
+      .post(`${BaseUrl}/forget-password`, {
         email,
       })
       .then((res) => {

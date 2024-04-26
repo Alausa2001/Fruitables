@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDocumentTitle } from '../services/title';
 import { ToastContainer, toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const Register = () => {
   useDocumentTitle("Fruitables - Register")
@@ -27,7 +28,7 @@ const Register = () => {
     }
     setIsLoading(true);
     await axios
-      .post("https://fruitables-7yyj.onrender.com/api/v1/signup", {
+      .post(`${BaseUrl}/signup`, {
         phoneNo: inputs.phone,
         password: inputs.password,
         email: inputs.email,

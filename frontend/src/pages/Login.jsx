@@ -5,6 +5,7 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { useDocumentTitle } from '../services/title';
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const Login = () => {
   useDocumentTitle("Fruitables - Login")
@@ -22,7 +23,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await axios.post("https://fruitables-7yyj.onrender.com/api/v1/signin", {
+    await axios.post(`${BaseUrl}/signin`, {
       email: inputs.email,
       password: inputs.password
     }).then(res => {
