@@ -157,7 +157,7 @@ const checkout = async (req, res) => {
             postalCode, mobile, email, status: "paid", user: userId,  total
         });
 
-        const payment = await InitializePayment({ email, amount: parseInt((total + 3)) * 100 });
+        const payment = await InitializePayment({ email, amount: parseInt(total) * 100 });
 
         if (payment.data.authorization_url) {
             await newCheckout.save();
