@@ -20,9 +20,6 @@ const addToCart = async(req, res) => {
             const newCartItem = new CartItem({ quantity, fruit: fruitId, cart: cart._id })
             await newCartItem.save();
 
-            // Update the quantity of the fruit available
-            const updateQuantity = await Fruit.findByIdAndUpdate(fruitId, { quantityAvailable: fruit.quantityAvailable - quantity })
-
             return res.status(201).json({ status: "ok", msg: "Item added to cart", newCartItem })
         }
         return res.status(404).json({ status: "error", msg: "out of stock" })
@@ -68,12 +65,12 @@ const increaseItemQuantity = async (req, res) => {
     try {
         const cart = await Cart.findOne({ _id: req.params.cartId });
         if (!cart) {
-            return res.status(404).json({ status: "ok", messsage: "cart not found, incorrect id" });
+            return res.status(404).json({ status: "ok", msg: "cart not found, incorrect id" });
         }
 
         const item = await CartItem.findOne({  cart: cart._id, _id: req.params.cartItemId });
         if (!item) {
-            return res.status(404).json({ status: "ok", messsage: "Item not found, incorrect id" })
+            return res.status(404).json({ status: "ok", msg: "Item not found, incorrect id" })
         }
 
         const fruit = await Fruit.findOne({ _id: item.fruit });
@@ -84,11 +81,10 @@ const increaseItemQuantity = async (req, res) => {
         }
         const updatedCart = await CartItem.findByIdAndUpdate(req.params.cartItemId, { quantity: item.quantity + 1 });
 
-        const updateQuantity = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable - 1 })
-        return res.status(200).json({ status: "ok"})
+        return res.status(200).json({ status: "ok", msg: "Item quantity has been increased by 1" });
     } catch(err) {
         console.log(err)
-        return res.status(500).json({ status: "ok", message: "Error occurred"}); 
+        return res.status(500).json({ status: "ok", msg: "Error occurred"}); 
     }
 }
 
@@ -112,9 +108,8 @@ const decreaseItemQuantity = async (req, res) => {
                 status: "ok", msg: `${fruit.name} is out of stock`})
         }
         const updatedCart = await CartItem.findByIdAndUpdate(req.params.cartItemId, { quantity: item.quantity - 1 });
-
-        const updateQuantity = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable + 1 })
-        return res.status(200).json({ status: "ok"})
+        return res.status(200).json({ status: "ok", msg: "Item quantity has been decreased by 1" })
+ 
     } catch(err) {
         console.log(err)
         return res.status(500).json({ status: "ok", message: "Error occurred"}); 
@@ -124,12 +119,8 @@ const decreaseItemQuantity = async (req, res) => {
 
 const removeItemFromCart = async (req, res) => {
     try {
-        let fruit
         let item = await CartItem.findOne({ _id: req.params.id });
         if (item) {
-            // adds the quantityremoved from cart back to the available stock
-            fruit = await Fruit.findOne({ _id: item.fruit });
-            fruit = await Fruit.findByIdAndUpdate(item.fruit, { quantityAvailable: fruit.quantityAvailable + item.quantity });
             // delete item from cart
             item = await CartItem.findByIdAndDelete(req.params.id);
             return res.status(200).json({ status: "ok", message: "item removed from cart" })
