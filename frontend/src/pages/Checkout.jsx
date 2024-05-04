@@ -7,6 +7,7 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { clearCart } from "../features/cart/cartSlice";
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const Checkout = () => {
   const { cartItems, total } = useSelector((state) => state.cart);
@@ -41,7 +42,7 @@ const Checkout = () => {
     console.log(formData);
     await axios
       .post(
-        `https://fruitables-7yyj.onrender.com/api/v1/checkout/${user._id}`,
+        `${BaseUrl}/checkout/${user._id}`,
         {
           formData,
         }

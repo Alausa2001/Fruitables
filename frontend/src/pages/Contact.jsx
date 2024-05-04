@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const Contact = () => {
   window.scrollTo(0, 0);
@@ -21,7 +22,7 @@ const Contact = () => {
     setIsLoading(true);
     e.preventDefault();
     await axios
-      .post(`https://fruitables-7yyj.onrender.com/api/v1/contact_us`, {
+      .post(`${BaseUrl}/contact_us`, {
         name: inputs.name,
         email: inputs.email,
         message: inputs.message,

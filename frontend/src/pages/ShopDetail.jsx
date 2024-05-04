@@ -9,6 +9,7 @@ import axios from "axios";
 import { Rating } from 'react-simple-star-rating'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import BaseUrl from "../services/url";
 
 const ShopDetail = () => {
   useDocumentTitle("Fruitables - Shop Detail");
@@ -36,7 +37,7 @@ const ShopDetail = () => {
     setProduct(found);
     const getReviews = async () => {
       await axios
-        .get(`https://fruitables-7yyj.onrender.com/api/v1/fruits/${found._id}/reviews`)
+        .get(`${BaseUrl}/fruits/${found._id}/reviews`)
         .then((res) => {
           setReviews(res.data.reviews);
           setIsLoading(false);

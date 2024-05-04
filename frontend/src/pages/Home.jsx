@@ -15,6 +15,7 @@ import {
   // Testimonial,
   Spinner,
 } from "../components";
+import BaseUrl from "../services/url";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("https://fruitables-7yyj.onrender.com/api/v1/fruits/all")
+      .get(`${BaseUrl}/fruits/all`)
       .then((res) => {
         const { status, all_products, fruitOnly, vegetables } = res.data;
         if (status === "ok") {
