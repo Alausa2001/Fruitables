@@ -1,11 +1,9 @@
 import mongoose from "mongoose"
 
 
-const url2 = "mongodb+srv://alausaabdulqoyum28:bdbrxOUIJcLjcC9I@cluster0.xvupsd0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-//bdbrxOUIJcLjcC9I
 
 async function dbConn() {
-  await mongoose.connect(url2, {
+  await mongoose.connect("mongodb://127.0.0.1:27017/Fruitables", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
