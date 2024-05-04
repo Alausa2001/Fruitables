@@ -1,0 +1,323 @@
+[{
+	"_id": {
+		"$oid": "661b1da57759bdbf6b70376a"
+	},
+	"name": "Apple",
+	"description": "Crisp and refreshing, apples are a classic choice for snacking or baking. They come in various colors like red, green, and yellow.",
+	"price": 1.5,
+	"quantityAvailable": 6,
+	"category": "simple",
+	"origin": "Green Meadow farms",
+	"weight": 2,
+	"minWeight": 1,
+	"quality": "organic",
+	"check": "healthy",
+	"createdAt": {
+		"$date": "2024-04-14T00:04:53.06Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-21T16:57:13.209Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713052915/fruit_k1daw6.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b1fa47759bdbf6b70376d"
+	},
+	"name": "Banana",
+	"description": "Creamy and sweet, bananas are packed with essential nutrients like potassium and vitamin C. They make a convenient and healthy snack.",
+	"price": 2,
+	"quantityAvailable": 6,
+	"category": "simple",
+	"origin": "Asidos Farms",
+	"weight": 0.15,
+	"minWeight": 0.1,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T00:13:24.459Z"
+	},
+	"updatedAt": {
+		"$date": "2024-05-04T17:33:20.193Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713053517/fruit_yvngsc.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b21b47759bdbf6b703774"
+	},
+	"name": "Grapes",
+	"description": "Sweet and succulent, grapes come in various colors and flavors. They are rich in antioxidants and are a delicious addition to salads or enjoyed on their own.",
+	"price": 2,
+	"quantityAvailable": 80,
+	"category": "simple",
+	"origin": "Chilex Farms",
+	"weight": 0.3,
+	"minWeight": 0.25,
+	"quality": "organic",
+	"check": "pass",
+	"createdAt": {
+		"$date": "2024-04-14T00:22:12.146Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:06:06.312Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713054089/fruit_m9l6uj.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b238f7759bdbf6b703777"
+	},
+	"name": "Strawberry",
+	"description": "Plump and juicy, strawberries are beloved for their sweet and slightly tart flavor. They are high in vitamin C and antioxidants, perfect for desserts or smoothies.",
+	"price": 2,
+	"quantityAvailable": 80,
+	"category": "aggregate",
+	"origin": "Straw Farms, London",
+	"weight": 0.5,
+	"minWeight": 0.03,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T00:30:07.534Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:07:09.497Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713054318/fruit_uk7soh.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b24c47759bdbf6b70377a"
+	},
+	"name": "Blackberry",
+	"description": "Bold and flavorful, blackberries are packed with vitamins and fiber. Their deep color and rich taste make them a versatile ingredient in jams, pies, or enjoyed fresh.",
+	"price": 2.5,
+	"quantityAvailable": 70,
+	"category": "aggregate",
+	"origin": "Usam Agrics, Luton",
+	"weight": 0.02,
+	"minWeight": 0.015,
+	"quality": "organic",
+	"check": "pass",
+	"createdAt": {
+		"$date": "2024-04-14T00:35:16.993Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:08:15.429Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713054827/black_fjwcs0.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b6df3540b95b30a2a47be"
+	},
+	"name": "Raspberry",
+	"description": "Bright and tangy,raspberries burst with flavor and are loaded with antioxidants. They are perfect for adding a pop of color and taste to salads, desserts, or yogurt.",
+	"price": 3,
+	"quantityAvailable": 13,
+	"category": "aggregate",
+	"origin": "Doset Farms",
+	"weight": 0.03,
+	"minWeight": 0.02,
+	"quality": "organic",
+	"check": "pass",
+	"createdAt": {
+		"$date": "2024-04-14T05:47:31.497Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:09:17.706Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713055055/black_f30ue7.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b6fce9178a0f72bb78db9"
+	},
+	"name": "Tomato",
+	"description": "Juicy and flavorful, tomatoes are a staple in many cuisines. They come in various shapes, sizes, and colors, and are rich in vitamins and antioxidants.",
+	"price": 1.2,
+	"quantityAvailable": 120,
+	"category": "vegetables",
+	"origin": "Harmony Farms",
+	"weight": 0.1,
+	"minWeight": 0.08,
+	"quality": "organic",
+	"check": "pass",
+	"createdAt": {
+		"$date": "2024-04-14T05:55:26.508Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:11:28.836Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713074079/fruit_so6zy0.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b70c79178a0f72bb78dbc"
+	},
+	"name": "Cucumber",
+	"description": "Cool and crisp, cucumbers are hydrating and low in calories. They are versatile and can be sliced for salads, pickled, or added to sandwiches for extra crunch.",
+	"price": 0.8,
+	"quantityAvailable": 10,
+	"category": "vegetables",
+	"origin": "Harmony Farms",
+	"weight": 0.3,
+	"minWeight": 0.25,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T05:59:35.744Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:12:46.295Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713074308/fruit_t5y6rh.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b71879178a0f72bb78dbf"
+	},
+	"name": "Carrot",
+	"description": "Sweet and crunchy, carrots are packed with beta-carotene, a powerful antioxidant. They can be enjoyed raw as a snack, cooked in soups, or roasted for a caramelized flavor.",
+	"price": 1,
+	"quantityAvailable": 100,
+	"category": "vegetables",
+	"origin": "Harmony Farms",
+	"weight": 0.15,
+	"minWeight": 0.1,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:02:47.029Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:13:49.003Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713074527/fruit_n3g82t.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b726e9178a0f72bb78dc2"
+	},
+	"name": "Spinach",
+	"description": "Nutrient-rich and versatile, spinach is a powerhouse of vitamins and minerals. It can be eaten raw in salads, sautéed as a side dish, or blended into smoothies for an added boost of nutrition.",
+	"price": 1.5,
+	"quantityAvailable": 80,
+	"category": "vegetables",
+	"origin": "Obudu Arces",
+	"weight": 0.2,
+	"minWeight": 0.15,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:06:38.521Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:14:57.745Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713074746/fruit_l2xe0p.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b796dc9c80b3c9b1869c8"
+	},
+	"name": "Fig",
+	"description": "Sweet and soft fruit with a unique texture. Indulge in the succulent sweetness of figs, with their tender, honey-like flesh that melts in your mouth. Harvested from the bountiful trees of Sunrise Orchard, each fig is a delicate treasure of nature.",
+	"price": 2.5,
+	"quantityAvailable": 20,
+	"category": "multiple",
+	"origin": "Sunrise Orchard",
+	"weight": 0.1,
+	"minWeight": 0.05,
+	"quality": "organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:36:30.002Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:15:49.564Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713076442/fruit_ydpzgq.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b7ad6c9c80b3c9b1869cb"
+	},
+	"name": "Pineapple",
+	"description": "Tropical fruit with a sweet and tangy flavor. Bursting with a perfect balance of sweetness and tanginess, they are a true taste of paradise.",
+	"price": 3,
+	"quantityAvailable": 80,
+	"category": "multiple",
+	"origin": "Tropical Gardens",
+	"weight": 1.2,
+	"minWeight": 0.8,
+	"quality": "Organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:42:30.535Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:16:38.794Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713076908/fruit_vegkp8.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b7c27c9c80b3c9b1869ce"
+	},
+	"name": "Mulberry",
+	"description": "Savor the rich, berrylicious goodness of mulberries, plucked from the lush fields of Berry Fields. Small yet mighty, these gems pack a punch of flavor and nutrition in every bite.",
+	"price": 4,
+	"quantityAvailable": 80,
+	"category": "multiple",
+	"origin": "Berry Fields, Luton",
+	"weight": 0.07,
+	"minWeight": 0.5,
+	"quality": "Organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:48:07.747Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:17:33.772Z"
+	},
+	"__v": 0,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713077176/fruit_nkjj8w.jpg"
+},
+{
+	"_id": {
+		"$oid": "661b7e3f689f53586dbbf58f"
+	},
+	"name": "JackFruit",
+	"description": "Large tropical fruit with a sweet and distinctive flavor. With its sweet aroma and luscious texture, jackfruit is a tropical delight like no other.",
+	"price": 6,
+	"quantityAvailable": 17,
+	"imageUrl": "https://res.cloudinary.com/dqj46xlzo/image/upload/v1713077792/fruit_qxrppt.jpg",
+	"category": "multiple",
+	"origin": "Tropical Gardens",
+	"weight": 5,
+	"minWeight": 4,
+	"quality": "Organic",
+	"check": "Healthy",
+	"createdAt": {
+		"$date": "2024-04-14T06:57:03.976Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T06:57:03.976Z"
+	},
+	"__v": 0
+}]
+

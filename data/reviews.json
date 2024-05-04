@@ -1,0 +1,90 @@
+[{
+	"_id": {
+		"$oid": "661b89c4936033db641f7edf"
+	},
+	"name": "Bolaji Ahmed",
+	"email": "bolaji@gmail.com",
+	"review": "I love this fruit",
+	"rating": 4,
+	"fruit": {
+		"$oid": "661b7c27c9c80b3c9b1869ce"
+	},
+	"createdAt": {
+		"$date": "2024-04-14T07:46:12.132Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:46:12.132Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "661b8a76936033db641f7ee2"
+	},
+	"name": "Ayew Ahmed",
+	"email": "bola@gmail.com",
+	"review": "I LOVE IT, SO JUICY",
+	"rating": 4,
+	"fruit": {
+		"$oid": "661b7c27c9c80b3c9b1869ce"
+	},
+	"createdAt": {
+		"$date": "2024-04-14T07:49:10.47Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-14T07:49:10.47Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "66267611884ad794449f4912"
+	},
+	"name": "John Doe",
+	"review": "I love this product",
+	"rating": 4,
+	"fruit": {
+		"$oid": "661b1fa47759bdbf6b70376d"
+	},
+	"createdAt": {
+		"$date": "2024-04-22T14:37:05.92Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-22T14:37:05.92Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "66277397cfc177d328586b4c"
+	},
+	"name": "Alabi John",
+	"review": "Your Bananas are so nice",
+	"rating": 4,
+	"fruit": {
+		"$oid": "661b1fa47759bdbf6b70376d"
+	},
+	"createdAt": {
+		"$date": "2024-04-23T08:38:47.461Z"
+	},
+	"updatedAt": {
+		"$date": "2024-04-23T08:38:47.461Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "663671080594916a7fa92a08"
+	},
+	"fruit": {
+		"$oid": "661b1fa47759bdbf6b70376d"
+	},
+	"createdAt": {
+		"$date": "2024-05-04T17:31:52.94Z"
+	},
+	"updatedAt": {
+		"$date": "2024-05-04T17:31:52.94Z"
+	},
+	"__v": 0
+}]
+

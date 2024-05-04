@@ -1,0 +1,16 @@
+[{
+	"_id": {
+		"$oid": "663670f00594916a7fa92a00"
+	},
+	"email": "deborahonaojosule@gmail.com",
+	"phoneNo": "+1 213 121 22",
+	"password": "$2b$10$BT3LUNCMnu5ffoqfzwDBReZ3LhygeTesuB/bB4dN1PLf.WMiVjPya",
+	"createdAt": {
+		"$date": "2024-05-04T17:31:28.544Z"
+	},
+	"updatedAt": {
+		"$date": "2024-05-04T17:31:28.544Z"
+	},
+	"__v": 0
+}]
+
