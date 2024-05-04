@@ -5,7 +5,7 @@ import userRouter from "./routes/user.routes.js";
 import fruitRouter from "./routes/fruit.routes.js";
 
 const app = express();
-const port = 3000;
+const port = 5500;
 
 
 

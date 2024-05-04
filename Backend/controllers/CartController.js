@@ -1,31 +1,14 @@
-import express from "express";
-import bcrypt from "bcrypt";
-import jsonwebtoken from "jsonwebtoken";
-import User from "../models/user.js"
 import { Fruit } from "../models/fruits.js";
 import { Cart, CartItem } from "../models/cart.js";
 import Checkout from "../models/checkout.js";
-import logger from "../middlewares/logger.js";
-import ContactUs from "../models/contact.js";
-import Paystack from "../utils/paystack.js";
-import sendMail from "../utils/send_email.js";
-import randomPassword from "../utils/random_password.js";
-
-import { signup,  signin, forgotPassword, contactUs } from "../controllers/UserController.js";
-
+import Paystack from "../utils/paystack.js"
 
 
 const { InitializePayment, VerifyPayment } = Paystack();
-const userRouter = express.Router();
 
 
-userRouter.post("/signup", logger, signup);
-userRouter.post('/signin', logger, signin);
-userRouter.post("/forget-password", logger, forgotPassword);
 
-
-// Routes for a user's cart items
-userRouter.post("/add_to_cart", logger, async(req, res) => {
+const addToCart = async(req, res) => {
     const { userId, fruitId, quantity = 1 } = req.body;
     
     try {
@@ -47,11 +30,10 @@ userRouter.post("/add_to_cart", logger, async(req, res) => {
         console.log(err)
         return res.status(500).json({ status: "error", msg: "internal server error"});
     }
-});
+}
 
 
-
-userRouter.get("/cart_items/:id", logger, async(req, res) => {
+const getCartItems = async (req, res) => {
     let totalPrice = 0;
     let eachPrice;
     const cart_items = [];
@@ -78,12 +60,11 @@ userRouter.get("/cart_items/:id", logger, async(req, res) => {
         console.log(err)
         return res.status(500).json({ status: "error", msg: "internal server error"});
     }
-});
+}
 
 
 
-
-userRouter.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res) => {
+const increaseItemQuantity = async (req, res) => {
     try {
         const cart = await Cart.findOne({ _id: req.params.cartId });
         if (!cart) {
@@ -109,10 +90,10 @@ userRouter.put("/cart/:cartId/item/:cartItemId/increase", logger, async(req, res
         console.log(err)
         return res.status(500).json({ status: "ok", message: "Error occurred"}); 
     }
-});
+}
 
 
-userRouter.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res) => {
+const decreaseItemQuantity = async (req, res) => {
     try {
         const cart = await Cart.findOne({ _id: req.params.cartId });
         if (!cart) {
@@ -138,10 +119,10 @@ userRouter.put("/cart/:cartId/item/:cartItemId/decrease", logger, async(req, res
         console.log(err)
         return res.status(500).json({ status: "ok", message: "Error occurred"}); 
     }
-});
+}
 
 
-userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
+const removeItemFromCart = async (req, res) => {
     try {
         let fruit
         let item = await CartItem.findOne({ _id: req.params.id });
@@ -158,33 +139,10 @@ userRouter.delete("/remove_from_cart/:id", logger, async(req, res) => {
         console.log(err)
         return res.status(500).json({ status: "error", msg: "internal server error"});
     }
-})
+}
 
 
-
-// Contact Us
-userRouter.post("/contact_us", logger, async(req, res) => {
-    const { name, email, message } = req.body;
-
-    try {
-        let contactUs = new ContactUs({ name, email, message });
-        const content = `<p>From ${name}</p><br><p>Customer's email: ${email}</p><br>Message: ${message}`;
-        await sendMail("deborahonaojosule@gmail.com", "Customer Request", content);
-        await contactUs.save();
-        return res.status(200).json({
-            status: "ok", message: "Thank you for reaching out to Fruitables, you message will be attended to in due time"
-        });
-
-    } catch (err) {
-        console.log(err)
-        return res.status(500).json({ status: "error", message: "Error occurred, try again later"});
-    }
-})
-
-
-
-// Checkout Routes
-userRouter.post("/checkout/:userId", logger, async(req, res) => {
+const checkout = async (req, res) => {
     const { firstname, lastname, address, city, postalCode, mobile, email, status, userId, total, cartItems} = req.body.formData;
     try {
         let quantityInStock;
@@ -224,23 +182,7 @@ userRouter.post("/checkout/:userId", logger, async(req, res) => {
         console.log(err);
         return res.status(500).json({ status: "error", msg: "internal server error"});
     }
-});
+}
 
 
-userRouter.get("/:id/transaction_history", logger, async(req, res) => {
-    try {
-        const paid = await CartItem.find({ cart: req.params.id, status: "paid" });
-        res.status(200).json({ status: "ok", paid })
-       } catch(err) {
-        console.log(err);
-        return res.status(500).json({ status: "error", msg: "internal server error"});
-    }
-});
-
-
-
-
-
-
-
-export default userRouter;
+export { addToCart, getCartItems, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart, checkout };
