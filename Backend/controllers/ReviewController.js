@@ -1,6 +1,4 @@
-import express from "express";
 import { Fruit, Review } from "../models/fruits.js"
-import logger from "../middlewares/logger.js"
 
 
 const addReview = async (req, res) => {
