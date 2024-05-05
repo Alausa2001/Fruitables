@@ -61,7 +61,7 @@ const ShopDetail = () => {
     setIsLoading(true);
     e.preventDefault();
     await axios
-      .post(`https://fruitables-7yyj.onrender.com/api/v1/fruits/${id}/review`, {
+      .post(`${BaseUrl}/fruits/${id}/review`, {
         name: inputs.name,
         review: inputs.review,
         rating: ratingValue,
